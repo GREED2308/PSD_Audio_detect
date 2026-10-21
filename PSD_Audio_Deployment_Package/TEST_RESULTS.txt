@@ -1,0 +1,36 @@
+PSD Audio Classification - Test Summary
+======================================
+
+Dataset processing
+- 207/207 raw entries decoded for feature extraction.
+- 0 feature extraction failures.
+- 183 unique modeling samples after duplicate removal and temporary exclusion of the cross-label hash conflict.
+- 92 berisik; 91 non_berisik.
+
+Model training/evaluation
+- Grouped train/test split completed.
+- Train: 149 samples; test: 34 samples.
+- Source-group overlap between train and test: 0.
+- Best inner grouped-CV macro F1: 0.7323.
+- Held-out test accuracy: 0.8824.
+- Held-out test macro F1: 0.8824.
+- Majority baseline accuracy: 0.4706.
+
+Automated test suite
+- test_evaluation_metadata_complete: PASS
+- test_expected_feature_count: PASS
+- test_model_manifest_is_deduplicated: PASS
+- test_model_predicts_both_classes_and_has_32_features: PASS
+- test_train_test_source_groups_do_not_overlap: PASS
+- Total: 5 passed.
+
+Additional checks
+- All project Python files passed py_compile.
+- CLI prediction src/predict.py executed on one MP3 and returned a class and scores.
+- Notebook passed nbformat validation and was executed with no cell errors.
+- PDF report rendered to 13 pages and visual pages were inspected for layout.
+
+Not run / limitation
+- `streamlit-webrtc`/PyAV are not installed in the package-building environment and package download was unavailable due to connection/DNS failure. The live-microphone UI source passed Python syntax compilation, but the browser-to-server microphone stream could not be tested end-to-end here. Install `requirements.txt` and test START/STOP, browser microphone permission, first prediction after the 10-second window, and repeat start/stop before the presentation.
+- Live-window predictions have not been independently benchmarked. The reported 88.24% held-out score applies only to the file-based test set, not the live microphone mode.
+- Labels have not been manually semantically checked one by one. Metrics measure agreement with the supplied folder labels.

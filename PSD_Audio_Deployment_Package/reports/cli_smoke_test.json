@@ -1,0 +1,9 @@
+{
+  "file": "24-006 berisik 2.mp3",
+  "prediction": "non_berisik",
+  "model_scores": {
+    "berisik": 0.3774886700128233,
+    "non_berisik": 0.622511329987177
+  },
+  "note": "Skor model bukan probabilitas terkalibrasi atau jaminan kebenaran."
+}
