@@ -16,13 +16,22 @@ Model training/evaluation
 - Held-out test macro F1: 0.8824.
 - Majority baseline accuracy: 0.4706.
 
+Live visualizer checks
+- Silent signal creates a flat baseline and zero bars: PASS
+- Synthetic 440 Hz signal generates non-flat waveform/envelope: PASS
+- Visualizer HTML includes the correct silent/active state: PASS
+- JavaScript syntax validation with Node.js: PASS
+- Live visualization refresh is throttled to about 0.30 seconds to avoid rendering on every audio frame.
+
 Automated test suite
 - test_evaluation_metadata_complete: PASS
 - test_expected_feature_count: PASS
 - test_model_manifest_is_deduplicated: PASS
 - test_model_predicts_both_classes_and_has_32_features: PASS
 - test_train_test_source_groups_do_not_overlap: PASS
-- Total: 5 passed.
+- Existing pipeline tests: 5 passed.
+- New visualizer tests: 3 passed.
+- Total tests: 8 passed (run with `PYTHONPATH=. pytest -q tests`).
 
 Additional checks
 - All project Python files passed py_compile.
@@ -31,6 +40,7 @@ Additional checks
 - PDF report rendered to 13 pages and visual pages were inspected for layout.
 
 Not run / limitation
+- The generated Canvas HTML was smoke-rendered in headless Chromium for both silence and a synthetic 440 Hz tone; expected state labels and canvas drawing were observed. The full Streamlit app with the browser microphone/WebRTC stream was not tested end-to-end in this build environment and still needs a local browser test.
 - `streamlit-webrtc`/PyAV are not installed in the package-building environment and package download was unavailable due to connection/DNS failure. The live-microphone UI source passed Python syntax compilation, but the browser-to-server microphone stream could not be tested end-to-end here. Install `requirements.txt` and test START/STOP, browser microphone permission, first prediction after the 10-second window, and repeat start/stop before the presentation.
 - Live-window predictions have not been independently benchmarked. The reported 88.24% held-out score applies only to the file-based test set, not the live microphone mode.
 - Labels have not been manually semantically checked one by one. Metrics measure agreement with the supplied folder labels.

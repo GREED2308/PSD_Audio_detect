@@ -17,9 +17,12 @@ import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 
 from src.audio_features import FEATURE_NAMES, SAMPLE_RATE, extract_feature_vector
+from src.wave_visualizer import render_waveform
 
 ROOT = Path(__file__).resolve().parent
 MODEL_PATH = ROOT / "models" / "random_forest.joblib"
+ALERT_SOUND_PATH = ROOT / "assets" / "jangan_berisik.mp3"
+ALERT_SOUND_BYTES = ALERT_SOUND_PATH.read_bytes() if ALERT_SOUND_PATH.exists() else None
 DISPLAY = {"berisik": "Berisik", "non_berisik": "Non-berisik"}
 
 st.set_page_config(page_title="Deteksi Suara Sekitar | PSD", page_icon="🔊", layout="centered")
@@ -68,10 +71,32 @@ with st.sidebar:
         help="Audio terbaru sepanjang ini digunakan untuk setiap prediksi. Jendela yang lebih panjang cenderung lebih stabil, tetapi respons lebih lambat.",
     )
     update_seconds = st.slider(
-        "Interval pembaruan (detik)", min_value=1, max_value=5, value=2, step=1,
+        "Interval pembaruan prediksi (detik)", min_value=1, max_value=5, value=2, step=1,
         help="Seberapa sering model menjalankan prediksi setelah jendela pertama penuh.",
     )
-    st.caption("Pipeline: mono 16 kHz → 32 fitur → Random Forest")
+    play_voice_alert = st.toggle(
+        "Putar suara peringatan saat terdeteksi Berisik", value=True,
+        help="Memutar audio 'Jangan berisik!' ketika hasil berubah menjadi Berisik.",
+    )
+    test_alert_clicked = st.button("Tes suara peringatan")
+    st.caption("Jika browser memblokir autoplay, gunakan tombol putar pada pemutar audio peringatan.")
+    if ALERT_SOUND_BYTES is None:
+        st.warning("Audio peringatan tidak ditemukan. Pastikan assets/jangan_berisik.mp3 tersedia.")
+    visual_threshold = st.slider(
+        "Ambang hening untuk visualisasi", min_value=0.001, max_value=0.030,
+        value=0.008, step=0.001, format="%.3f",
+        help="Jika RMS suara terbaru di bawah ambang ini, grafik diratakan. Naikkan jika garis masih bergerak saat ruangan terasa hening.",
+    )
+    st.caption("Pipeline klasifikasi: mono 16 kHz → 32 fitur → Random Forest")
+
+if test_alert_clicked and ALERT_SOUND_BYTES is not None:
+    st.success("Tes audio peringatan: 'Jangan berisik!'")
+    st.audio(
+        ALERT_SOUND_BYTES,
+        format="audio/wav",
+        autoplay=True,
+        alt="Tes suara peringatan Jangan berisik",
+    )
 
 if not hasattr(av, "AudioResampler"):
     st.error("PyAV tidak mendukung AudioResampler pada instalasi ini. Perbarui paket `av` dan `streamlit-webrtc`.")
@@ -92,9 +117,22 @@ ctx = webrtc_streamer(
     },
 )
 
+st.subheader("Visualisasi suara sekitar")
+st.caption(
+    "Grafik dibuat khusus dengan gaya equalizer seperti referensi yang kamu kirim. "
+    "Saat suara berada di bawah ambang hening, grafik menjadi garis lurus; saat ada suara, "
+    "gelombang dan batang amplitudo mengikuti sinyal mikrofon."
+)
+waveform_place = st.empty()
+render_waveform(
+    waveform_place, np.zeros(int(0.28 * SAMPLE_RATE), dtype=np.float32),
+    SAMPLE_RATE, visual_threshold, "MENUNGGU MIKROFON",
+)
+
 status_place = st.empty()
 result_place = st.empty()
 detail_place = st.empty()
+alert_audio_place = st.empty()
 progress_place = st.empty()
 
 if not ctx.state.playing:
@@ -109,6 +147,9 @@ else:
     total_samples_received = 0
     samples_at_last_prediction = 0
     last_prediction: dict[str, object] | None = None
+    alert_event_id = 0
+    last_visual_update = 0.0
+    last_progress_update = 0.0
     resampler = av.AudioResampler(format="s16", layout="mono", rate=SAMPLE_RATE)
     receiver = ctx.audio_receiver
 
@@ -154,10 +195,22 @@ else:
                     rolling_audio = rolling_audio[-window_samples:]
 
                 collected_seconds = min(rolling_audio.size / SAMPLE_RATE, float(window_seconds))
-                progress_place.progress(
-                    min(1.0, collected_seconds / float(window_seconds)),
-                    text=f"Mengumpulkan audio: {collected_seconds:.1f}/{window_seconds} detik",
-                )
+                now_monotonic = time.monotonic()
+                # Refresh the actual-signal visual independently of the slower classifier cadence.
+                if now_monotonic - last_visual_update >= 0.30:
+                    recent_count = min(rolling_audio.size, int(0.30 * SAMPLE_RATE))
+                    recent_rms = float(np.sqrt(np.mean(np.square(rolling_audio[-recent_count:].astype(np.float64))))) if recent_count else 0.0
+                    state_text = "SUARA TERDETEKSI" if recent_rms >= visual_threshold else "HENING / DI BAWAH AMBANG"
+                    render_waveform(
+                        waveform_place, rolling_audio, SAMPLE_RATE, visual_threshold, state_text
+                    )
+                    last_visual_update = now_monotonic
+                if now_monotonic - last_progress_update >= 0.30:
+                    progress_place.progress(
+                        min(1.0, collected_seconds / float(window_seconds)),
+                        text=f"Mengumpulkan audio: {collected_seconds:.1f}/{window_seconds} detik",
+                    )
+                    last_progress_update = now_monotonic
 
                 enough_audio = rolling_audio.size >= window_samples
                 due_for_prediction = (
@@ -167,6 +220,10 @@ else:
                     continue
 
                 try:
+                    previous_label = (
+                        str(last_prediction["prediction"])
+                        if last_prediction is not None else None
+                    )
                     feature_vector = extract_feature_vector(rolling_audio, SAMPLE_RATE)
                     frame = pd.DataFrame([feature_vector], columns=features_order)
                     prediction = str(model.predict(frame)[0])
@@ -193,6 +250,24 @@ else:
                 else:
                     result_place.success(f"Hasil sementara: **{DISPLAY.get(pred_label, pred_label)}**")
 
+                # Play the warning once per transition into the Berisik class,
+                # not on every prediction update while the class remains Berisik.
+                should_play_alert = (
+                    play_voice_alert
+                    and pred_label == "berisik"
+                    and previous_label != "berisik"
+                )
+                if pred_label != "berisik":
+                    alert_audio_place.empty()
+                elif should_play_alert and ALERT_SOUND_BYTES is not None:
+                    alert_event_id += 1
+                    alert_audio_place.audio(
+                        ALERT_SOUND_BYTES,
+                        format="audio/wav",
+                        autoplay=True,
+                        alt=f"Peringatan suara Jangan berisik, peringatan ke-{alert_event_id}",
+                    )
+
                 score_map = last_prediction["scores"]
                 metrics = detail_place.container()
                 with metrics:
@@ -215,13 +290,7 @@ else:
             status_place.error(f"Pengolahan mikrofon mengalami masalah: {exc}")
         finally:
             status_place.info("Sesi deteksi berakhir. Tekan START untuk memulai lagi.")
-
-st.divider()
-st.subheader("Catatan penggunaan")
-st.markdown(
-    "- Gunakan mikrofon yang dipilih oleh browser dan uji di lingkungan yang serupa dengan dataset.\n"
-    "- Pada komputer lokal, buka aplikasi melalui `localhost`. Untuk diakses lewat jaringan atau internet, "
-    "mikrofon browser umumnya memerlukan konteks aman HTTPS dan konfigurasi WebRTC yang sesuai.\n"
-    "- Di hosting publik, audio mikrofon dikirim ke server hosting untuk diproses. Jangan gunakan audio sensitif.\n"
-    "- Model ini mengklasifikasikan label dataset *berisik/non-berisik*, bukan mengukur dB atau memenuhi standar kebisingan lingkungan."
-)
+            render_waveform(
+                waveform_place, np.zeros(int(0.28 * SAMPLE_RATE), dtype=np.float32),
+                SAMPLE_RATE, visual_threshold, "MIKROFON BERHENTI",
+            )
