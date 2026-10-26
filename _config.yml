@@ -1,0 +1,38 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Sistem Klasifikasi Audio Berisik dan Non-berisik
+author: Tim Proyek Sains Data
+logo: images/feature_importance.png
+
+# Setelan eksekusi notebook: 'off' agar build tidak menjalankan ulang notebook (tidak butuh dataset/model/mikrofon)
+execute:
+  execute_notebooks: 'off'
+
+# Output LaTeX / PDF
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# BibTeX file untuk sitasi
+bibtex_bibfiles:
+  - references.bib
+
+# Konfigurasi repositori GitHub
+repository:
+  url: https://github.com/GREED2308/PSD_Audio_detect
+  path_to_book: .
+  branch: main
+
+# Pengaturan tampilan HTML
+html:
+  use_issues_button: false
+  use_repository_button: true
+
+# Konfigurasi Sphinx untuk mengabaikan file laporan internal dan README non-buku
+sphinx:
+  config:
+    exclude_patterns:
+      - README_DEPLOYMENT.md
+      - reports/**
+

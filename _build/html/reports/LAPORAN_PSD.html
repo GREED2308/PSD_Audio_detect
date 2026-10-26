@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LAPORAN PROYEK SAINS DATA &#8212; Sistem Klasifikasi Audio Berisik dan Non-berisik</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reports/LAPORAN_PSD';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/feature_importance.png" class="logo__image only-light" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+    <img src="../_static/feature_importance.png" class="logo__image only-dark pst-js-only" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Sistem Klasifikasi Audio Berisik dan Non-berisik
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../business-understanding.html">Business Understanding — Latar Belakang, Tujuan, dan Rumusan Masalah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-understanding.html">Data Understanding — Deskripsi Dataset dan Eksplorasi Awal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../crawling.html">Crawling Data — Proses Pengumpulan Data Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing.html">Preprocessing — Pembersihan dan Persiapan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature-extraction.html">Feature Extraction — Ekstraksi Fitur dari Sinyal Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling.html">Modeling — Pembangunan Model Klasifikasi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluation.html">Evaluation — Evaluasi Performa Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment — Sistem Inferensi Aplikasi Web Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/GREED2308/PSD_Audio_detect" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/reports/LAPORAN_PSD.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LAPORAN PROYEK SAINS DATA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistem-klasifikasi-audio-berisik-dan-non-berisik-menggunakan-ekstraksi-fitur-librosa-dan-random-forest">Sistem Klasifikasi Audio Berisik dan Non-berisik menggunakan Ekstraksi Fitur Librosa dan Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">Ringkasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.2 Rumusan masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengguna-dan-ruang-lingkup">1.4 Pengguna dan ruang lingkup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-target-dan-kriteria-keberhasilan">1.5 Definisi target dan kriteria keberhasilan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asal-dan-jumlah-data">2.1 Asal dan jumlah data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#durasi">2.2 Durasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-duplikasi-dan-konflik-label">2.3 Audit duplikasi dan konflik label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-eksploratif">2.4 Visualisasi eksploratif</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-dan-decoding">3.1 Pemeriksaan dan decoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardisasi">3.2 Standardisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur">3.3 Ekstraksi fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-modeling">3.4 Matriks modeling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">4. Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma">4.1 Algoritma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-data-dan-pencegahan-data-leakage">4.2 Pemisahan data dan pencegahan data leakage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-parameter">4.3 Pencarian parameter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">5. Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pada-held-out-test-set">5.1 Hasil pada held-out test set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#per-kelas">5.2 Per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.3 Confusion matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembanding-baseline">5.4 Pembanding baseline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">5.5 Feature importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-dan-keterbatasan-evaluasi">5.6 Interpretasi dan keterbatasan evaluasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">6. Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-deteksi-suara-sekitar">6.1 Arsitektur deteksi suara sekitar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-aplikasi">6.2 Menjalankan aplikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-dan-keterbatasan-deployment">6.3 Validasi dan keterbatasan deployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uji-fungsional-sebelum-presentasi">6.4 Uji fungsional sebelum presentasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-lanjutan">8. Rekomendasi lanjutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="laporan-proyek-sains-data">
+<h1>LAPORAN PROYEK SAINS DATA<a class="headerlink" href="#laporan-proyek-sains-data" title="Link to this heading">#</a></h1>
+<section id="sistem-klasifikasi-audio-berisik-dan-non-berisik-menggunakan-ekstraksi-fitur-librosa-dan-random-forest">
+<h2>Sistem Klasifikasi Audio Berisik dan Non-berisik menggunakan Ekstraksi Fitur Librosa dan Random Forest<a class="headerlink" href="#sistem-klasifikasi-audio-berisik-dan-non-berisik-menggunakan-ekstraksi-fitur-librosa-dan-random-forest" title="Link to this heading">#</a></h2>
+<p><strong>Mata kuliah:</strong> Proyek Sains Data (PSD)<br />
+<strong>Anggota kelompok:</strong> 4 orang — nama/NIM diisi oleh kelompok<br />
+<strong>Dataset:</strong> Audio berisik dan non-berisik yang dibagikan melalui Google Drive kelas</p>
+</section>
+<hr class="docutils" />
+<section id="ringkasan">
+<h2>Ringkasan<a class="headerlink" href="#ringkasan" title="Link to this heading">#</a></h2>
+<p>Proyek ini membangun pipeline klasifikasi audio dua kelas dari tahap Business Understanding sampai Deployment dengan metodologi CRISP-DM. Audio diproses menjadi mono dengan sample rate 16 kHz, lalu direpresentasikan oleh 32 fitur akustik yang mencakup RMS, spectral centroid, zero-crossing rate, dan 13 koefisien MFCC beserta statistik mean dan standard deviation. Random Forest dilatih menggunakan data yang telah dideduplikasi. Pemisahan data dilakukan berdasarkan kelompok sumber rekaman agar rekaman dari sumber yang sama tidak tersebar ke data latih dan uji.</p>
+<p>Dataset awal memuat 207 entri (104 berisik dan 103 non-berisik). Audit menemukan 18 kelompok konten identik yang melibatkan 41 entri serta satu hash yang memiliki label bertentangan. Setelah salinan identik dalam label yang sama dipertahankan satu wakilnya dan konflik lintas kelas dikeluarkan sementara, diperoleh 183 sampel unik: 92 berisik dan 91 non-berisik.</p>
+<p>Dalam eksperimen ini, Random Forest dengan parameter hasil pencarian memberikan accuracy 88,24%, balanced accuracy 88,54%, dan macro F1 88,24% pada satu hold-out test set berisi 34 sampel. Nilai macro F1 rata-rata terbaik pada grouped cross-validation internal adalah 73,23%. Baseline mayoritas menghasilkan accuracy 47,06% pada test set yang sama. Angka uji ini adalah hasil awal, bukan jaminan generalisasi; label folder belum diverifikasi secara manual satu per satu.</p>
+</section>
+<section id="business-understanding">
+<h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
+<section id="latar-belakang">
+<h3>1.1 Latar belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
+<p>Audio lingkungan dapat berbeda dari segi energi sinyal, distribusi frekuensi, dan karakteristik spektralnya. Pemeriksaan manual setiap rekaman membutuhkan waktu, sehingga proyek ini mengeksplorasi sistem yang memprediksi apakah audio termasuk kategori berisik atau non-berisik berdasarkan fitur akustik.</p>
+</section>
+<section id="rumusan-masalah">
+<h3>1.2 Rumusan masalah<a class="headerlink" href="#rumusan-masalah" title="Link to this heading">#</a></h3>
+<p>Bagaimana membangun sistem yang mengklasifikasikan audio berisik dan non-berisik secara otomatis menggunakan ekstraksi fitur akustik dan algoritma Random Forest?</p>
+</section>
+<section id="tujuan">
+<h3>1.3 Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Memahami karakteristik dan kualitas dataset audio.</p></li>
+<li><p>Menyiapkan audio dengan pipeline preprocessing yang konsisten.</p></li>
+<li><p>Mengekstrak fitur akustik berdimensi tetap untuk setiap file.</p></li>
+<li><p>Melatih dan mengevaluasi model Random Forest dengan prosedur pemisahan data yang mengurangi data leakage.</p></li>
+<li><p>Menyediakan aplikasi yang mengakses mikrofon browser untuk mengklasifikasikan suara sekitar secara berkala.</p></li>
+</ol>
+</section>
+<section id="pengguna-dan-ruang-lingkup">
+<h3>1.4 Pengguna dan ruang lingkup<a class="headerlink" href="#pengguna-dan-ruang-lingkup" title="Link to this heading">#</a></h3>
+<p>Pengguna utama adalah mahasiswa/penguji proyek yang ingin mencoba klasifikasi audio melalui aplikasi. Input deployment berupa stream mikrofon browser yang dianalisis dalam jendela audio bergulir; output berupa label prediksi dan skor model per kelas. Proyek ini merupakan prototipe akademik, bukan sistem pengukuran kebisingan tersertifikasi.</p>
+</section>
+<section id="definisi-target-dan-kriteria-keberhasilan">
+<h3>1.5 Definisi target dan kriteria keberhasilan<a class="headerlink" href="#definisi-target-dan-kriteria-keberhasilan" title="Link to this heading">#</a></h3>
+<p>Target mengikuti label folder sumber (<code class="docutils literal notranslate"><span class="pre">berisik</span></code> dan <code class="docutils literal notranslate"><span class="pre">non_berisik</span></code>). Definisi semantik operasional kelas perlu disejajarkan dengan instruksi dosen dan cara dataset diberi label. Data live diklasifikasikan dalam jendela bergulir 10 detik secara default; window ini bukan validasi kebisingan terkalibrasi. Keberhasilan teknis dinilai melalui keberhasilan pipeline, tidak adanya kebocoran kelompok sumber dalam split, metrik per kelas, pembandingan dengan baseline, serta kemampuan aplikasi menerima dan mengklasifikasikan audio mikrofon langsung. Validitas prediksi live tetap membutuhkan uji terpisah pada kondisi nyata.</p>
+</section>
+</section>
+<section id="data-understanding">
+<h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<section id="asal-dan-jumlah-data">
+<h3>2.1 Asal dan jumlah data<a class="headerlink" href="#asal-dan-jumlah-data" title="Link to this heading">#</a></h3>
+<p>Dataset terdiri dari dua ZIP yang diberikan pengguna. Audit awal menemukan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Jumlah entri awal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Berisik</p></td>
+<td class="text-right"><p>104</p></td>
+</tr>
+<tr class="row-odd"><td><p>Non-berisik</p></td>
+<td class="text-right"><p>103</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>207</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Seluruh 207 entri berhasil didekode saat audit. Walau ekstensi file umumnya <code class="docutils literal notranslate"><span class="pre">.mp3</span></code>, pemeriksaan container menemukan 204 format terdeteksi sebagai MP3, dua AAC, dan satu container MOV/MP4 dengan codec AAC. Karena itu, pipeline perlu membaca konten file dan tidak hanya mengandalkan ekstensi.</p>
+<p>Sample rate sumber tidak seragam: 129 file terdeteksi 48 kHz, 72 file 44,1 kHz, dan enam file 16 kHz. Sebanyak 147 file memiliki dua kanal dan 60 file satu kanal. Standardisasi audio dibutuhkan sebelum ekstraksi fitur.</p>
+</section>
+<section id="durasi">
+<h3>2.2 Durasi<a class="headerlink" href="#durasi" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Minimum</p></th>
+<th class="head text-right"><p>Median</p></th>
+<th class="head text-right"><p>Rata-rata</p></th>
+<th class="head text-right"><p>Maksimum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Berisik</p></td>
+<td class="text-right"><p>18,039 detik</p></td>
+<td class="text-right"><p>30,216 detik</p></td>
+<td class="text-right"><p>31,135 detik</p></td>
+<td class="text-right"><p>48,170 detik</p></td>
+</tr>
+<tr class="row-odd"><td><p>Non-berisik</p></td>
+<td class="text-right"><p>29,510 detik</p></td>
+<td class="text-right"><p>30,250 detik</p></td>
+<td class="text-right"><p>30,673 detik</p></td>
+<td class="text-right"><p>38,496 detik</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Mayoritas audio berdurasi sekitar 30 detik. Untuk eksperimen ini setiap file asli diperlakukan sebagai satu sampel. Audio tidak dipecah menjadi beberapa chunk karena durasi relatif pendek dan jumlah sampel independen terbatas.</p>
+</section>
+<section id="audit-duplikasi-dan-konflik-label">
+<h3>2.3 Audit duplikasi dan konflik label<a class="headerlink" href="#audit-duplikasi-dan-konflik-label" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Terdapat 184 hash unik dari 207 entri.</p></li>
+<li><p>Ada 18 kelompok duplikasi byte-identik, yang melibatkan 41 entri.</p></li>
+<li><p>Sebanyak 17 kelompok duplikat berada di kelas yang sama.</p></li>
+<li><p>Satu hash muncul pada dua label berbeda: <code class="docutils literal notranslate"><span class="pre">24-034</span> <span class="pre">berisik</span> <span class="pre">1.mp3</span></code> dan <code class="docutils literal notranslate"><span class="pre">24-034</span> <span class="pre">non-berisik</span> <span class="pre">1.mp3</span></code>.</p></li>
+</ul>
+<p>Isi dari dua file konflik identik hingga tingkat byte sehingga metadata saja tidak dapat menentukan label yang benar. Kedua entri dikeluarkan sementara dari matriks modeling. Salinan identik di dalam kelas yang sama diwakili oleh satu entri deterministik agar satu konten tidak memperoleh bobot berlebih.</p>
+</section>
+<section id="visualisasi-eksploratif">
+<h3>2.4 Visualisasi eksploratif<a class="headerlink" href="#visualisasi-eksploratif" title="Link to this heading">#</a></h3>
+<p><strong>Distribusi kelas awal</strong></p>
+<p><img alt="Distribusi kelas awal" src="../_images/raw_class_distribution1.png" /></p>
+<p><strong>Distribusi setelah deduplikasi dan eksklusi konflik</strong></p>
+<p><img alt="Distribusi kelas hasil pembersihan" src="../_images/cleaned_class_distribution1.png" /></p>
+<p><strong>Distribusi durasi</strong></p>
+<p><img alt="Distribusi durasi audio" src="../_images/duration_distribution1.png" /></p>
+</section>
+</section>
+<section id="data-preparation">
+<h2>3. Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<section id="pemeriksaan-dan-decoding">
+<h3>3.1 Pemeriksaan dan decoding<a class="headerlink" href="#pemeriksaan-dan-decoding" title="Link to this heading">#</a></h3>
+<p>Semua file asli dipertahankan dalam <code class="docutils literal notranslate"><span class="pre">data/raw/</span></code>. Setiap file diberi fingerprint SHA-256, metadata, label folder, dan kode sumber yang diduga berasal dari nama file. Jika konten identik terkait dengan beberapa kode sumber, kode sumber tersebut digabung ke kelompok cross-validation yang sama untuk mengurangi kebocoran.</p>
+</section>
+<section id="standardisasi">
+<h3>3.2 Standardisasi<a class="headerlink" href="#standardisasi" title="Link to this heading">#</a></h3>
+<p>Audio didekode sebagai sinyal mono dengan sample rate 16.000 Hz. Librosa digunakan sebagai jalur utama; FFmpeg digunakan sebagai fallback untuk format yang tidak terbaca oleh decoder utama. Tidak dilakukan normalisasi volume otomatis karena tingkat energi dapat menjadi informasi bagi klasifikasi berisik/non-berisik. Frame hening tidak dibuang otomatis karena keheningan/aktivitas latar juga berpotensi terkait dengan kelas.</p>
+</section>
+<section id="ekstraksi-fitur">
+<h3>3.3 Ekstraksi fitur<a class="headerlink" href="#ekstraksi-fitur" title="Link to this heading">#</a></h3>
+<p>Satu file diubah menjadi vektor dengan 32 fitur numerik:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelompok fitur</p></th>
+<th class="head"><p>Agregasi</p></th>
+<th class="head text-right"><p>Jumlah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RMS</p></td>
+<td><p>Mean dan standard deviation</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spectral centroid</p></td>
+<td><p>Mean dan standard deviation</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Zero-crossing rate</p></td>
+<td><p>Mean dan standard deviation</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>MFCC 1–13</p></td>
+<td><p>Mean dan standard deviation setiap koefisien</p></td>
+<td class="text-right"><p>26</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td><p></p></td>
+<td class="text-right"><p><strong>32</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Definisi ini mengikuti materi HackMD perkuliahan. Angka 40 pada contoh data dummy di materi tidak digunakan, karena fungsi ekstraksi yang dijelaskan menghasilkan 32 fitur.</p>
+<p><strong>Distribusi RMS mean menurut label</strong></p>
+<p><img alt="Distribusi RMS mean" src="../_images/rms_distribution1.png" /></p>
+<p>Fitur RMS membantu merepresentasikan energi, tetapi tidak cukup sebagai satu-satunya penentu kelas. Karena itu model menggunakan semua fitur yang disepakati pada metode.</p>
+</section>
+<section id="matriks-modeling">
+<h3>3.4 Matriks modeling<a class="headerlink" href="#matriks-modeling" title="Link to this heading">#</a></h3>
+<p>Setelah satu wakil untuk setiap hash valid dipilih dan hash konflik dikeluarkan, jumlah sampel menjadi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Sampel unik untuk modeling</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Berisik</p></td>
+<td class="text-right"><p>92</p></td>
+</tr>
+<tr class="row-odd"><td><p>Non-berisik</p></td>
+<td class="text-right"><p>91</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>183</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tidak ada nilai fitur non-finite atau file gagal diekstrak pada proses yang dijalankan dalam lingkungan ini.</p>
+</section>
+</section>
+<section id="modeling">
+<h2>4. Modeling<a class="headerlink" href="#modeling" title="Link to this heading">#</a></h2>
+<section id="algoritma">
+<h3>4.1 Algoritma<a class="headerlink" href="#algoritma" title="Link to this heading">#</a></h3>
+<p>Model utama adalah <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> dari scikit-learn. Random Forest menggabungkan beberapa pohon keputusan dan bekerja langsung pada vektor fitur numerik. Pendekatan ini sesuai dengan materi perkuliahan dan relatif ringan untuk dataset kecil.</p>
+</section>
+<section id="pemisahan-data-dan-pencegahan-data-leakage">
+<h3>4.2 Pemisahan data dan pencegahan data leakage<a class="headerlink" href="#pemisahan-data-dan-pencegahan-data-leakage" title="Link to this heading">#</a></h3>
+<p>Data dibagi menggunakan <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> 5-fold. Fold pertama digunakan sebagai test set, sementara parameter model dipilih melalui 4-fold <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> pada data latih. Seluruh file dari grup sumber yang sama ditempatkan hanya di satu partisi.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partisi</p></th>
+<th class="head text-right"><p>Total</p></th>
+<th class="head text-right"><p>Berisik</p></th>
+<th class="head text-right"><p>Non-berisik</p></th>
+<th class="head text-right"><p>Grup sumber</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Train</p></td>
+<td class="text-right"><p>149</p></td>
+<td class="text-right"><p>74</p></td>
+<td class="text-right"><p>75</p></td>
+<td class="text-right"><p>21</p></td>
+</tr>
+<tr class="row-odd"><td><p>Test</p></td>
+<td class="text-right"><p>34</p></td>
+<td class="text-right"><p>18</p></td>
+<td class="text-right"><p>16</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Overlap grup train/test</strong></p></td>
+<td class="text-right"><p><strong>0</strong></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sampel dari sumber yang sama tidak tersebar antara train dan test berdasarkan kelompok yang dibangun saat audit.</p>
+</section>
+<section id="pencarian-parameter">
+<h3>4.3 Pencarian parameter<a class="headerlink" href="#pencarian-parameter" title="Link to this heading">#</a></h3>
+<p>Pencarian grid mengevaluasi kombinasi:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: 200 atau 400</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: <code class="docutils literal notranslate"><span class="pre">None</span></code> atau 12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_samples_leaf</span></code>: 1, 2, atau 4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_features</span></code>: <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> atau 0,7</p></li>
+</ul>
+<p>Kriteria pemilihan model adalah macro F1 pada grouped cross-validation di dalam data latih. Parameter terbaik pada eksperimen ini adalah <code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth=None</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_leaf=4</span></code>, dan <code class="docutils literal notranslate"><span class="pre">max_features='sqrt'</span></code>.</p>
+</section>
+</section>
+<section id="evaluation">
+<h2>5. Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h2>
+<section id="hasil-pada-held-out-test-set">
+<h3>5.1 Hasil pada held-out test set<a class="headerlink" href="#hasil-pada-held-out-test-set" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head text-right"><p>Random Forest</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Accuracy</p></td>
+<td class="text-right"><p>88,24%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Balanced accuracy</p></td>
+<td class="text-right"><p>88,54%</p></td>
+</tr>
+<tr class="row-even"><td><p>Macro precision</p></td>
+<td class="text-right"><p>88,54%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Macro recall</p></td>
+<td class="text-right"><p>88,54%</p></td>
+</tr>
+<tr class="row-even"><td><p>Macro F1</p></td>
+<td class="text-right"><p>88,24%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Best inner grouped-CV macro F1</p></td>
+<td class="text-right"><p>73,23%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="per-kelas">
+<h3>5.2 Per kelas<a class="headerlink" href="#per-kelas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Precision</p></th>
+<th class="head text-right"><p>Recall</p></th>
+<th class="head text-right"><p>F1-score</p></th>
+<th class="head text-right"><p>Support</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Non-berisik</p></td>
+<td class="text-right"><p>83,33%</p></td>
+<td class="text-right"><p>93,75%</p></td>
+<td class="text-right"><p>88,24%</p></td>
+<td class="text-right"><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>Berisik</p></td>
+<td class="text-right"><p>93,75%</p></td>
+<td class="text-right"><p>83,33%</p></td>
+<td class="text-right"><p>88,24%</p></td>
+<td class="text-right"><p>18</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="confusion-matrix">
+<h3>5.3 Confusion matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
+<p>Urutan baris/kolom: Non-berisik, Berisik.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aktual \ Prediksi</p></th>
+<th class="head text-right"><p>Non-berisik</p></th>
+<th class="head text-right"><p>Berisik</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Non-berisik</p></td>
+<td class="text-right"><p>15</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Berisik</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Confusion matrix" src="../_images/confusion_matrix1.png" /></p>
+<p>Model salah mengklasifikasikan satu audio non-berisik menjadi berisik dan tiga audio berisik menjadi non-berisik pada test set ini.</p>
+</section>
+<section id="pembanding-baseline">
+<h3>5.4 Pembanding baseline<a class="headerlink" href="#pembanding-baseline" title="Link to this heading">#</a></h3>
+<p>Baseline <code class="docutils literal notranslate"><span class="pre">DummyClassifier(strategy='most_frequent')</span></code> menghasilkan accuracy 47,06%, balanced accuracy 50,00%, dan macro F1 32,00% pada test set yang sama. Random Forest lebih baik pada pembagian data uji ini.</p>
+</section>
+<section id="feature-importance">
+<h3>5.5 Feature importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
+<p><img alt="Feature importance" src="../_images/feature_importance1.png" /></p>
+<p>Feature importance berbasis impurity menunjukkan fitur yang sering membantu pemisahan di dalam model, tetapi bukan bukti hubungan sebab-akibat. Kepentingan fitur juga dapat berubah dengan dataset dan parameter.</p>
+</section>
+<section id="interpretasi-dan-keterbatasan-evaluasi">
+<h3>5.6 Interpretasi dan keterbatasan evaluasi<a class="headerlink" href="#interpretasi-dan-keterbatasan-evaluasi" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Test set hanya berisi 34 sampel dan enam grup sumber, sehingga metrik dapat berubah pada pembagian data lain.</p></li>
+<li><p>Macro F1 inner cross-validation 73,23% lebih rendah dari macro F1 test 88,24%; ini menunjukkan hasil sensitif terhadap grup/sampel yang diuji.</p></li>
+<li><p>Label folder belum dikonfirmasi semantik satu per satu. Evaluasi mengukur kesesuaian prediksi model terhadap label sumber, yang mungkin mengandung noise.</p></li>
+<li><p>File dengan nama atau karakteristik yang tidak konsisten ditandai untuk pemeriksaan tambahan di <code class="docutils literal notranslate"><span class="pre">data/processed/duplicate_review.csv</span></code> dan <code class="docutils literal notranslate"><span class="pre">reports/test_predictions.csv</span></code>. Prediksi model tidak dipakai untuk mengubah label secara otomatis.</p></li>
+<li><p>Dataset berasal dari sumber kelas tertentu dan belum mewakili seluruh lingkungan suara; pengujian pada lingkungan, perangkat, jarak mikrofon, dan tingkat kebisingan lain perlu dilakukan sebelum penggunaan nyata.</p></li>
+</ol>
+</section>
+</section>
+<section id="deployment">
+<h2>6. Deployment<a class="headerlink" href="#deployment" title="Link to this heading">#</a></h2>
+<section id="arsitektur-deteksi-suara-sekitar">
+<h3>6.1 Arsitektur deteksi suara sekitar<a class="headerlink" href="#arsitektur-deteksi-suara-sekitar" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Pengguna membuka aplikasi Streamlit, menekan START, dan memberi izin akses mikrofon pada browser.</p></li>
+<li><p>Stream audio dikirim melalui WebRTC dari browser ke proses Python yang menjalankan aplikasi.</p></li>
+<li><p>Audio di-resample menjadi mono 16 kHz, kemudian disusun sebagai jendela bergulir (default 10 detik).</p></li>
+<li><p>Fungsi ekstraksi yang sama menghasilkan 32 fitur: RMS (mean/std), spectral centroid (mean/std), ZCR (mean/std), dan MFCC 1–13 (mean/std).</p></li>
+<li><p>Random Forest menghasilkan label <code class="docutils literal notranslate"><span class="pre">berisik</span></code> atau <code class="docutils literal notranslate"><span class="pre">non_berisik</span></code> dan skor model per kelas; hasil diperbarui berkala sampai pengguna menekan STOP.</p></li>
+</ol>
+<p>Aplikasi ini tidak menyimpan stream audio ke file secara permanen. Jika dipublikasikan secara online, audio dikirim ke server hosting untuk dianalisis. Penggunaan mikrofon browser membutuhkan izin pengguna dan HTTPS dalam hosting publik; WebRTC juga mungkin memerlukan konfigurasi jaringan STUN/TURN. Versi lokal menggunakan URL localhost.</p>
+</section>
+<section id="menjalankan-aplikasi">
+<h3>6.2 Menjalankan aplikasi<a class="headerlink" href="#menjalankan-aplikasi" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>--needed<span class="w"> </span>ffmpeg<span class="w"> </span>python<span class="w"> </span>python-pip
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">       </span><span class="c1"># Bash/Zsh</span>
+<span class="c1"># Fish: source .venv/bin/activate.fish</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+<p>Buka URL localhost yang ditampilkan, tekan START, dan izinkan akses mikrofon. Tunggu jendela audio pertama terkumpul; ukuran default 10 detik. Tekan STOP untuk menghentikan deteksi.</p>
+</section>
+<section id="validasi-dan-keterbatasan-deployment">
+<h3>6.3 Validasi dan keterbatasan deployment<a class="headerlink" href="#validasi-dan-keterbatasan-deployment" title="Link to this heading">#</a></h3>
+<p>Kode aplikasi disiapkan menggunakan Streamlit-WebRTC dan PyAV untuk menerima frame mikrofon. Dalam lingkungan pembuatan artefak ini, dependensi antarmuka tersebut tidak tersedia dan instalasi paket eksternal tidak dapat dikonfirmasi, sehingga koneksi mikrofon belum diuji end-to-end melalui browser. Fungsi fitur dan inferensi model tetap diuji di pipeline/CLI. Kelompok harus menjalankan <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> dan melakukan uji manual pada laptop sebelum demo.</p>
+<p>Audio live menggunakan jendela 10 detik secara default, sedangkan dataset training berasal dari rekaman dengan durasi yang umumnya lebih panjang. Oleh karena itu, performa 88,24% pada data uji file tidak boleh diklaim sebagai akurasi live. Validasi khusus pada stream mikrofon dan beragam kondisi ruangan masih diperlukan. Aplikasi belum dipublikasikan ke hosting publik.</p>
+</section>
+<section id="uji-fungsional-sebelum-presentasi">
+<h3>6.4 Uji fungsional sebelum presentasi<a class="headerlink" href="#uji-fungsional-sebelum-presentasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Beri izin mikrofon, tekan START, dan pastikan hasil pertama muncul setelah jendela audio penuh.</p></li>
+<li><p>Uji di lingkungan relatif tenang dan lingkungan dengan suara latar yang lebih ramai.</p></li>
+<li><p>Pastikan hasil diperbarui, tombol STOP mengakhiri stream, dan tombol START dapat memulai kembali.</p></li>
+<li><p>Periksa pemilihan mikrofon browser dan uji pada perangkat yang akan digunakan untuk presentasi.</p></li>
+<li><p>Jelaskan bahwa skor model bukan probabilitas terkalibrasi dan aplikasi tidak mengukur dB.</p></li>
+</ul>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Proyek menyusun pipeline end-to-end untuk klasifikasi audio berisik dan non-berisik dengan Librosa dan Random Forest. Audit menemukan duplikasi dan konflik label, kemudian menghasilkan 183 konten unik untuk pemodelan. Pipeline mengekstrak 32 fitur per sampel, menggunakan pemisahan berbasis grup sumber, dan mengintegrasikan model ke aplikasi Streamlit-WebRTC untuk deteksi suara sekitar melalui mikrofon browser.</p>
+<p>Hasil held-out test menunjukkan accuracy 88,24%, sementara cross-validation internal terbaik memberikan macro F1 73,23%. Perbedaan ini harus ditafsirkan sebagai ketidakpastian akibat ukuran dataset dan variasi antargrup, bukan sebagai bukti performa universal. Sebelum mengklaim performa final, validasi semantik label terutama pada konflik/kandidat bermasalah masih diperlukan.</p>
+</section>
+<section id="rekomendasi-lanjutan">
+<h2>8. Rekomendasi lanjutan<a class="headerlink" href="#rekomendasi-lanjutan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Minta konfirmasi sumber/pengunggah untuk konflik label <code class="docutils literal notranslate"><span class="pre">24-034</span></code> jika dimungkinkan.</p></li>
+<li><p>Tinjau sampel yang model screening-nya tidak sejalan dengan label sumber; jangan mengganti label otomatis.</p></li>
+<li><p>Kumpulkan lebih banyak rekaman independen dan variasi kondisi rekaman.</p></li>
+<li><p>Laporkan hasil beberapa pengulangan grouped cross-validation atau gunakan nested cross-validation bila ingin memilih parameter dan mengestimasi performa secara lebih stabil.</p></li>
+<li><p>Jika sistem dipakai di luar demonstrasi kelas, tambahkan uji pengguna, dokumentasi lingkungan aplikasi, dan pemantauan performa.</p></li>
+</ol>
+</section>
+<section id="referensi">
+<h2>Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Materi perkuliahan, <a class="reference external" href="https://hackmd.io/&#64;ProyekSaindData/HyOT-AfnMl">Klasifikasi Audio — HackMD</a>.</p></li>
+<li><p>Librosa, <a class="reference external" href="https://librosa.org/doc/0.11.0/generated/librosa.feature.mfcc.html">MFCC feature extraction</a>.</p></li>
+<li><p>scikit-learn, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForestClassifier</a>.</p></li>
+<li><p>scikit-learn, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html">StratifiedKFold dan strategi validasi</a>.</p></li>
+<li><p>Streamlit-WebRTC, <a class="reference external" href="https://github.com/whitphx/streamlit-webrtc">dokumentasi dan contoh audio receiver</a>.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./reports"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistem-klasifikasi-audio-berisik-dan-non-berisik-menggunakan-ekstraksi-fitur-librosa-dan-random-forest">Sistem Klasifikasi Audio Berisik dan Non-berisik menggunakan Ekstraksi Fitur Librosa dan Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">Ringkasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.2 Rumusan masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.3 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengguna-dan-ruang-lingkup">1.4 Pengguna dan ruang lingkup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-target-dan-kriteria-keberhasilan">1.5 Definisi target dan kriteria keberhasilan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asal-dan-jumlah-data">2.1 Asal dan jumlah data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#durasi">2.2 Durasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audit-duplikasi-dan-konflik-label">2.3 Audit duplikasi dan konflik label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-eksploratif">2.4 Visualisasi eksploratif</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-dan-decoding">3.1 Pemeriksaan dan decoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardisasi">3.2 Standardisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur">3.3 Ekstraksi fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-modeling">3.4 Matriks modeling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">4. Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma">4.1 Algoritma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemisahan-data-dan-pencegahan-data-leakage">4.2 Pemisahan data dan pencegahan data leakage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-parameter">4.3 Pencarian parameter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">5. Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pada-held-out-test-set">5.1 Hasil pada held-out test set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#per-kelas">5.2 Per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">5.3 Confusion matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembanding-baseline">5.4 Pembanding baseline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">5.5 Feature importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-dan-keterbatasan-evaluasi">5.6 Interpretasi dan keterbatasan evaluasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">6. Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-deteksi-suara-sekitar">6.1 Arsitektur deteksi suara sekitar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-aplikasi">6.2 Menjalankan aplikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-dan-keterbatasan-deployment">6.3 Validasi dan keterbatasan deployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uji-fungsional-sebelum-presentasi">6.4 Uji fungsional sebelum presentasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-lanjutan">8. Rekomendasi lanjutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Proyek Sains Data
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan &#8212; Sistem Klasifikasi Audio Berisik dan Non-berisik</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'conclusion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Deployment — Sistem Inferensi Aplikasi Web Streamlit" href="deployment.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/feature_importance.png" class="logo__image only-light" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+    <img src="_static/feature_importance.png" class="logo__image only-dark pst-js-only" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Sistem Klasifikasi Audio Berisik dan Non-berisik
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding — Latar Belakang, Tujuan, dan Rumusan Masalah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding — Deskripsi Dataset dan Eksplorasi Awal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crawling.html">Crawling Data — Proses Pengumpulan Data Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing — Pembersihan dan Persiapan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature-extraction.html">Feature Extraction — Ekstraksi Fitur dari Sinyal Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">Modeling — Pembangunan Model Klasifikasi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation — Evaluasi Performa Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment — Sistem Inferensi Aplikasi Web Streamlit</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/GREED2308/PSD_Audio_detect" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/conclusion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-proyek">9.1 Kesimpulan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-dan-rekomendasi-lanjutan-future-work">9.2 Saran dan Rekomendasi Lanjutan (<em>Future Work</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-pustaka">9.3 Daftar Pustaka</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conclusion-kesimpulan-dan-saran-pengembangan-lanjutan">
+<h1>Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan<a class="headerlink" href="#conclusion-kesimpulan-dan-saran-pengembangan-lanjutan" title="Link to this heading">#</a></h1>
+<p>Bab penutup ini merangkum capaian esensial dari keseluruhan siklus metodologi CRISP-DM pada proyek klasifikasi audio, serta menguraikan rekomendasi strategis bagi pengembangan sistem di masa mendatang.</p>
+<section id="kesimpulan-proyek">
+<h2>9.1 Kesimpulan Proyek<a class="headerlink" href="#kesimpulan-proyek" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Penerapan Siklus Lengkap CRISP-DM</strong>: Proyek ini berhasil mengimplementasikan alur kerja sains data yang utuh, mulai dari pemahaman masalah (<em>Business Understanding</em>), pemahaman dan audit dataset (<em>Data Understanding</em>), akuisisi dan pra-pemrosesan (<em>Crawling &amp; Preprocessing</em>), rekayasa fitur (<em>Feature Extraction</em>), pemodelan (<em>Modeling</em>), evaluasi empiris (<em>Evaluation</em>), hingga penerapan aplikasi inferensi interaktif (<em>Deployment</em>).</p></li>
+<li><p><strong>Audit dan Integritas Dataset</strong>: Dari 207 berkas audio awal, audit hash SHA-256 berhasil mengungkap 18 kelompok duplikasi (41 entri) dan 1 konflik label biner lintas-kelas (<code class="docutils literal notranslate"><span class="pre">24-034</span></code>). Melalui prosedur deduplikasi intra-kelas dan isolasi konflik label, diperoleh 183 sampel pemodelan yang bersih dan berimbang (92 sampel <code class="docutils literal notranslate"><span class="pre">berisik</span></code> dan 91 sampel <code class="docutils literal notranslate"><span class="pre">non_berisik</span></code>).</p></li>
+<li><p><strong>Representasi Fitur Akustik Standar</strong>: Berhasil diekstraksi 32 fitur akustik berdimensi tetap per sampel audio menggunakan Librosa <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id7" title="Brian McFee, Vincent Lostanlen, Anton Metsai, Matt McVicar, Stefan Balke, Carl Thomé, Colin Raffel, Frank Zalkow, Ayoub Malek, Dana, Kyungyun Lee, Oriol Nieto, Dan Ellis, Ryuichi Yamamoto, Rachel Bittner, Fabian-Robert Stöter, Adrian Holovaty, Keunwoo Choi, Matt Vollrath, and Ziyao Wei. Librosa: audio and music signal analysis in python. In Proceedings of the 19th Python in Science Conference, 40–47. 2020. doi:10.25080/Majora-342d178e-007.">MLM+20</a>]</span> (2 fitur RMS, 2 fitur <em>spectral centroid</em>, 2 fitur <em>zero-crossing rate</em>, dan 26 fitur statistik MFCC 1–13) tanpa mengalami kegagalan ekstraksi numerik.</p></li>
+<li><p><strong>Pencegahan Kebocoran Data (<em>Data Leakage</em>)</strong>: Skema partisi <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> 5-fold berhasil memisahkan 149 data latih (21 kelompok sumber) dan 34 data uji (6 kelompok sumber) dengan tingkat tumpang-tindih kelompok tepat <strong>0</strong>.</p></li>
+<li><p><strong>Kinerja Model Klasifikasi</strong>: Model Random Forest <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id6" title="Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau, Matthieu Brucher, Matthieu Perrot, and Édouard Duchesnay. Scikit-learn: machine learning in python. Journal of Machine Learning Research, 12:2825–2830, 2011.">PVG+11</a>]</span> dengan konfigurasi terbaik (<code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth=None</span></code>, <code class="docutils literal notranslate"><span class="pre">min_samples_leaf=4</span></code>, <code class="docutils literal notranslate"><span class="pre">max_features='sqrt'</span></code>) menghasilkan:</p>
+<ul class="simple">
+<li><p><strong>Akurasi</strong>: 88,24%</p></li>
+<li><p><strong>Balanced Accuracy</strong>: 88,54%</p></li>
+<li><p><strong>Macro F1-score</strong>: 88,24%</p></li>
+<li><p>Kinerja ini melampaui performa <em>majority baseline</em> (akurasi 47,06% dan Macro F1 32,00%) secara sangat signifikan pada <em>held-out test set</em> yang sama.</p></li>
+</ul>
+</li>
+<li><p><strong>Implementasi Aplikasi Nyata</strong>: Model berhasil diintegrasikan ke dalam antarmuka web interaktif Streamlit dan WebRTC <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id8" title="Yuichiro Tsuchiya. Streamlit-webrtc: real-time video and audio processing for streamlit. https://github.com/whitphx/streamlit-webrtc, 2021.">Tsu21</a>]</span> yang mampu memproses audio mikrofon peramban secara <em>in-memory</em> dalam jendela bergulir (default 10 detik), menyajikan visualizer osiloskop/equalizer dinamis berbasis HTML Canvas, serta memberikan respons audio peringatan otomatis ketika lingkungan terdeteksi berisik.</p></li>
+</ol>
+</section>
+<section id="saran-dan-rekomendasi-lanjutan-future-work">
+<h2>9.2 Saran dan Rekomendasi Lanjutan (<em>Future Work</em>)<a class="headerlink" href="#saran-dan-rekomendasi-lanjutan-future-work" title="Link to this heading">#</a></h2>
+<p>Berdasarkan temuan dan keterbatasan yang diidentifikasi selama penelitian, beberapa langkah pengembangan lanjutan yang disarankan adalah:</p>
+<ol class="arabic simple">
+<li><p><strong>Verifikasi Semantik Label Secara Manual</strong>: Melakukan audit dengar (<em>listening test</em>) manual satu per satu terhadap seluruh berkas audio, khususnya untuk menyelesaikan anomali pada berkas berkonflik <code class="docutils literal notranslate"><span class="pre">24-034</span></code> serta sampel-sampel yang memiliki prediksi model bertolak belakang dengan label folder.</p></li>
+<li><p><strong>Ekspansi dan Diversifikasi Dataset</strong>: Menambah jumlah rekaman mandiri dengan variasi kondisi akustik yang lebih luas, seperti ruang pabrik, perkantoran terbuka, kafe luar ruangan, variasi jarak mikrofon terhadap sumber suara, serta penggunaan jenis perangkat perekam yang beragam.</p></li>
+<li><p><strong>Validasi Silang Bertingkat (<em>Nested Cross-Validation</em>)</strong>: Menerapkan skema <em>nested cross-validation</em> atau <em>repeated grouped cross-validation</em> guna memperoleh estimasi selang kepercayaan (<em>confidence interval</em>) performa model yang lebih tahan terhadap variasi pembagian kelompok sumber.</p></li>
+<li><p><strong>Eksplorasi Representasi Spektrogram 2D dan <em>Deep Learning</em></strong>: Mengembangkan pemodelan berbasis representasi spektrogram Mel dua dimensi menggunakan arsitektur <em>Convolutional Neural Networks</em> (CNN, misalnya arsitektur ResNet atau MobileNet audio) atau model transformer audio terkini (<em>Audio Spectrogram Transformer</em> / AST dan Wav2Vec) untuk menangkap pola temporal dan frekuensi secara simultan.</p></li>
+<li><p><strong>Kalibrasi Probabilitas dan Ambang Adaptif</strong>: Menerapkan metode kalibrasi probabilitas (<em>Platt Scaling</em> atau <em>Isotonic Regression</em>) pada skor prediksi model, serta merancang ambang deteksi dinamis yang dapat menyesuaikan diri secara otomatis terhadap derau dasar (<em>noise floor</em>) ruangan pengguna.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="daftar-pustaka">
+<h2>9.3 Daftar Pustaka<a class="headerlink" href="#daftar-pustaka" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id4">
+<div role="list" class="citation-list">
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CCK+00<span class="fn-bracket">]</span></span>
+<p>Pete Chapman, Julian Clinton, Randy Kerber, Thomas Khabaza, Thomas Reinartz, Colin Shearer, and Rüdiger Wirth. Crisp-dm 1.0: step-by-step data mining guide. <em>SPSS inc</em>, 9:1–73, 2000.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">MLM+20</a><span class="fn-bracket">]</span></span>
+<p>Brian McFee, Vincent Lostanlen, Anton Metsai, Matt McVicar, Stefan Balke, Carl Thomé, Colin Raffel, Frank Zalkow, Ayoub Malek, Dana, Kyungyun Lee, Oriol Nieto, Dan Ellis, Ryuichi Yamamoto, Rachel Bittner, Fabian-Robert Stöter, Adrian Holovaty, Keunwoo Choi, Matt Vollrath, and Ziyao Wei. Librosa: audio and music signal analysis in python. In <em>Proceedings of the 19th Python in Science Conference</em>, 40–47. 2020. <a class="reference external" href="https://doi.org/10.25080/Majora-342d178e-007">doi:10.25080/Majora-342d178e-007</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">PVG+11</a><span class="fn-bracket">]</span></span>
+<p>Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau, Matthieu Brucher, Matthieu Perrot, and Édouard Duchesnay. Scikit-learn: machine learning in python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Tsu21</a><span class="fn-bracket">]</span></span>
+<p>Yuichiro Tsuchiya. Streamlit-webrtc: real-time video and audio processing for streamlit. <a class="github reference external" href="https://github.com/whitphx/streamlit-webrtc">whitphx/streamlit-webrtc</a>, 2021.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>TimDPSData24<span class="fn-bracket">]</span></span>
+<p>Tim Dosen Proyek Sains Data. Klasifikasi audio. <a class="reference external" href="https://hackmd.io/&#64;ProyekSaindData/HyOT-AfnMl">https://hackmd.io/&#64;ProyekSaindData/HyOT-AfnMl</a>, 2024. Materi Perkuliahan Proyek Sains Data.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="deployment.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Deployment — Sistem Inferensi Aplikasi Web Streamlit</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-proyek">9.1 Kesimpulan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-dan-rekomendasi-lanjutan-future-work">9.2 Saran dan Rekomendasi Lanjutan (<em>Future Work</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-pustaka">9.3 Daftar Pustaka</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Proyek Sains Data
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

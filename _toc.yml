@@ -1,0 +1,21 @@
+format: jb-book
+root: intro
+chapters:
+  - file: business-understanding
+    title: Business Understanding — Latar Belakang, Tujuan, dan Rumusan Masalah
+  - file: data-understanding
+    title: Data Understanding — Deskripsi Dataset dan Eksplorasi Awal
+  - file: crawling
+    title: Crawling Data — Proses Pengumpulan Data Audio
+  - file: preprocessing
+    title: Preprocessing — Pembersihan dan Persiapan Data
+  - file: feature-extraction
+    title: Feature Extraction — Ekstraksi Fitur dari Sinyal Audio
+  - file: modeling
+    title: Modeling — Pembangunan Model Klasifikasi
+  - file: evaluation
+    title: Evaluation — Evaluasi Performa Model
+  - file: deployment
+    title: Deployment — Sistem Inferensi Aplikasi Web Streamlit
+  - file: conclusion
+    title: Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan

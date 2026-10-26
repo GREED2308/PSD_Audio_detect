@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deployment — Sistem Inferensi Aplikasi Web Streamlit &#8212; Sistem Klasifikasi Audio Berisik dan Non-berisik</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deployment';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan" href="conclusion.html" />
+    <link rel="prev" title="Evaluation — Evaluasi Performa Model" href="evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/feature_importance.png" class="logo__image only-light" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+    <img src="_static/feature_importance.png" class="logo__image only-dark pst-js-only" alt="Sistem Klasifikasi Audio Berisik dan Non-berisik - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Sistem Klasifikasi Audio Berisik dan Non-berisik
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding — Latar Belakang, Tujuan, dan Rumusan Masalah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding — Deskripsi Dataset dan Eksplorasi Awal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crawling.html">Crawling Data — Proses Pengumpulan Data Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing — Pembersihan dan Persiapan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature-extraction.html">Feature Extraction — Ekstraksi Fitur dari Sinyal Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">Modeling — Pembangunan Model Klasifikasi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation — Evaluasi Performa Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Deployment — Sistem Inferensi Aplikasi Web Streamlit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/GREED2308/PSD_Audio_detect" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/deployment.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Deployment — Sistem Inferensi Aplikasi Web Streamlit</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-aplikasi-web-streamlit-dan-webrtc">8.1 Arsitektur Aplikasi Web Streamlit dan WebRTC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antarmuka-pengguna-dan-pengaturan-sidebar">8.2 Antarmuka Pengguna dan Pengaturan Sidebar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizer-gelombang-suara-live-waveform-equalizer">8.3 Visualizer Gelombang Suara (<em>Live Waveform &amp; Equalizer</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-aplikasi-di-cachyos-linux">8.4 Panduan Menjalankan Aplikasi di CachyOS / Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemecahan-masalah-mikrofon-jaringan-troubleshooting">8.5 Pemecahan Masalah Mikrofon &amp; Jaringan (<em>Troubleshooting</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-sistem-smoke-test-automated-tests">8.6 Hasil Pengujian Sistem (<em>Smoke Test &amp; Automated Tests</em>)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deployment-sistem-inferensi-aplikasi-web-streamlit">
+<h1>Deployment — Sistem Inferensi Aplikasi Web Streamlit<a class="headerlink" href="#deployment-sistem-inferensi-aplikasi-web-streamlit" title="Link to this heading">#</a></h1>
+<p>Tahap <em>Deployment</em> mengintegrasikan model pembelajaran mesin yang telah dilatih ke dalam produk perangkat lunak interaktif berbasis web yang dapat digunakan langsung oleh pengguna akhir untuk mendeteksi tingkat kebisingan lingkungan melalui mikrofon.</p>
+<section id="arsitektur-aplikasi-web-streamlit-dan-webrtc">
+<h2>8.1 Arsitektur Aplikasi Web Streamlit dan WebRTC<a class="headerlink" href="#arsitektur-aplikasi-web-streamlit-dan-webrtc" title="Link to this heading">#</a></h2>
+<p>Sistem inferensi deteksi suara sekitar diimplementasikan menggunakan kerangka kerja Streamlit dan pustaka <code class="docutils literal notranslate"><span class="pre">streamlit-webrtc</span></code> <span class="bibtex-citation" id="id1">[<a class="reference internal" href="conclusion.html#id8" title="Yuichiro Tsuchiya. Streamlit-webrtc: real-time video and audio processing for streamlit. https://github.com/whitphx/streamlit-webrtc, 2021.">Tsu21</a>]</span>. Arsitektur sistem beroperasi dengan alur sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Penangkapan Audio Peramban (<em>Browser Audio Capture</em>)</strong>: Pengguna membuka antarmuka web, menekan tombol <strong>START</strong>, dan memberikan izin akses mikrofon pada peramban.</p></li>
+<li><p><strong>Transmisi Real-Time via WebRTC</strong>: Aliran data audio ditransmisikan secara langsung (<em>streaming</em>) dari peramban web ke proses Python di sisi server melalui protokol WebRTC (menggunakan pustaka PyAV).</p></li>
+<li><p><strong>Pemuatan Model Teroptimasi</strong>: Model Random Forest dimuat dari berkas <code class="docutils literal notranslate"><span class="pre">models/random_forest.joblib</span></code> menggunakan fungsi ter-cache <code class="docutils literal notranslate"><span class="pre">&#64;st.cache_resource</span></code> dari Streamlit guna mencegah pemuatan ulang yang membebani memori pada setiap interaksi pengguna.</p></li>
+<li><p><strong>Resampling dan Jendela Bergulir (<em>Rolling Window</em>)</strong>: Bingkai audio (<em>audio frames</em>) yang diterima diakumulasikan dan di-<em>resample</em> menjadi saluran tunggal (mono) 16.000 Hz. Audio ditampung dalam buffer jendela bergulir dengan panjang default 10 detik.</p></li>
+<li><p><strong>Ekstraksi Fitur &amp; Inferensi Berkala</strong>: Setiap interval waktu tertentu (default 2 detik), modul <code class="docutils literal notranslate"><span class="pre">src/audio_features.py</span></code> mengekstrak 32 fitur akustik dari jendela audio terkini, kemudian model Random Forest menghasilkan prediksi label (<code class="docutils literal notranslate"><span class="pre">berisik</span></code> atau <code class="docutils literal notranslate"><span class="pre">non_berisik</span></code>) beserta skor probabilitas per kelas.</p></li>
+<li><p><strong>Kebijakan Privasi Audio</strong>: Aplikasi ini <strong>tidak menyimpan rekaman audio ke dalam penyimpanan disk/file secara permanen</strong>. Data audio diproses murni di dalam memori kerja (<em>in-memory</em>) selama jendela aktif berlangsung.</p></li>
+</ol>
+<p>Kutipan konfigurasi dan arsitektur pemuatan model pada <code class="docutils literal notranslate"><span class="pre">app.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># app.py (Kutipan Inisialisasi &amp; Pemuatan Model)</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">streamlit_webrtc</span> <span class="kn">import</span> <span class="n">WebRtcMode</span><span class="p">,</span> <span class="n">webrtc_streamer</span>
+<span class="kn">from</span> <span class="nn">src.audio_features</span> <span class="kn">import</span> <span class="n">FEATURE_NAMES</span><span class="p">,</span> <span class="n">SAMPLE_RATE</span><span class="p">,</span> <span class="n">extract_feature_vector</span>
+<span class="kn">from</span> <span class="nn">src.wave_visualizer</span> <span class="kn">import</span> <span class="n">render_waveform</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">MODEL_PATH</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;models&quot;</span> <span class="o">/</span> <span class="s2">&quot;random_forest.joblib&quot;</span>
+<span class="n">ALERT_SOUND_PATH</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;assets&quot;</span> <span class="o">/</span> <span class="s2">&quot;jangan_berisik.mp3&quot;</span>
+
+<span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>
+<span class="k">def</span> <span class="nf">load_model_payload</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="n">load_model_payload</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+<span class="n">features_order</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;feature_names&quot;</span><span class="p">,</span> <span class="n">FEATURE_NAMES</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="antarmuka-pengguna-dan-pengaturan-sidebar">
+<h2>8.2 Antarmuka Pengguna dan Pengaturan Sidebar<a class="headerlink" href="#antarmuka-pengguna-dan-pengaturan-sidebar" title="Link to this heading">#</a></h2>
+<p>Aplikasi web menyediakan panel kontrol di bilah sisi (<em>sidebar</em>) yang memungkinkan pengguna menyesuaikan parameter deteksi secara dinamis:</p>
+<ul class="simple">
+<li><p><strong>Panjang Jendela Audio (<code class="docutils literal notranslate"><span class="pre">window_seconds</span></code>)</strong>: <em>Slider</em> dengan rentang 5 hingga 15 detik (nilai default: <strong>10 detik</strong>). Jendela yang lebih panjang menghasilkan estimasi yang lebih stabil, sedangkan jendela yang lebih pendek memberikan respons deteksi yang lebih cepat.</p></li>
+<li><p><strong>Interval Pembaruan Prediksi (<code class="docutils literal notranslate"><span class="pre">update_seconds</span></code>)</strong>: <em>Slider</em> dengan rentang 1 hingga 5 detik (nilai default: <strong>2 detik</strong>). Menentukan frekuensi model menjalankan inferensi setelah jendela pertama terisi penuh.</p></li>
+<li><p><strong>Peringatan Audio “Jangan berisik!” (<code class="docutils literal notranslate"><span class="pre">play_voice_alert</span></code>)</strong>: <em>Toggle switch</em> interaktif yang memutar berkas audio <code class="docutils literal notranslate"><span class="pre">assets/jangan_berisik.mp3</span></code> secara otomatis ketika status prediksi berubah menjadi “Berisik”, disertai tombol uji manual “Tes suara peringatan”.</p></li>
+<li><p><strong>Ambang Hening Visualisasi (<code class="docutils literal notranslate"><span class="pre">visual_threshold</span></code>)</strong>: <em>Slider</em> dengan rentang 0.001 hingga 0.030 (nilai default: <strong>0.008</strong>). Mengatur batas sensitivitas osiloskop visualizer.</p></li>
+</ul>
+</section>
+<section id="visualizer-gelombang-suara-live-waveform-equalizer">
+<h2>8.3 Visualizer Gelombang Suara (<em>Live Waveform &amp; Equalizer</em>)<a class="headerlink" href="#visualizer-gelombang-suara-live-waveform-equalizer" title="Link to this heading">#</a></h2>
+<p>Aplikasi dilengkapi komponen visualisasi audio langsung yang dibangun menggunakan HTML Canvas (<code class="docutils literal notranslate"><span class="pre">src/wave_visualizer.py</span></code>). Visualizer ini menerima sampel dari aliran mikrofon WebRTC yang sama dengan pipeline klasifikasi:</p>
+<ul class="simple">
+<li><p><strong>Pengurangan Beban Render (<em>Throttling</em>)</strong>: Visualizer diperbarui setiap sekitar <strong>0,30 detik</strong> untuk mencegah kelebihan beban komputasi antarmuka peramban.</p></li>
+<li><p><strong>Indikasi Keheningan</strong>: Apabila nilai RMS dari 300 milidetik audio terakhir berada di bawah ambang visualisasi, grafik dirender sebagai <strong>garis lurus datar</strong> di tengah canvas dan titik status berubah warna menjadi redup (<em>SILENT</em>).</p></li>
+<li><p><strong>Indikasi Gelombang Aktif</strong>: Ketika intensitas suara melampaui ambang batas, canvas menggambar garis gelombang (<em>waveform</em>) beresolusi tinggi (~0,28 detik terakhir) serta batang equalizer simetris yang mencerminkan selubung (<em>envelope</em>) RMS selama ~1,8 detik terakhir.</p></li>
+<li><p><strong>Independensi Model</strong>: Ambang visualisasi murni berfungsi sebagai gerbang tampilan antarmuka dan <strong>tidak memodifikasi masukan data maupun hasil prediksi model</strong>.</p></li>
+</ul>
+<figure class="align-center" id="fig-live-visualizer">
+<a class="reference internal image-reference" href="_images/live_visualizer_preview_comparison.png"><img alt="_images/live_visualizer_preview_comparison.png" src="_images/live_visualizer_preview_comparison.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Perbandingan visualizer HTML Canvas pada pengujian kondisi hening (atas) dan nada uji 440 Hz (bawah).</span><a class="headerlink" href="#fig-live-visualizer" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="panduan-menjalankan-aplikasi-di-cachyos-linux">
+<h2>8.4 Panduan Menjalankan Aplikasi di CachyOS / Linux<a class="headerlink" href="#panduan-menjalankan-aplikasi-di-cachyos-linux" title="Link to this heading">#</a></h2>
+<p>Berikut panduan langkah demi langkah untuk menjalankan aplikasi Streamlit secara lokal pada sistem operasi berbasis Arch Linux / CachyOS (mendukung <em>shell</em> Bash, Zsh, maupun Fish):</p>
+<ol class="arabic">
+<li><p><strong>Instalasi Paket Dependensi Sistem</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>--needed<span class="w"> </span>ffmpeg<span class="w"> </span>python<span class="w"> </span>python-pip
+</pre></div>
+</div>
+</li>
+<li><p><strong>Pembuatan dan Aktivasi Virtual Environment</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat virtual environment lokal</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+
+<span class="c1"># Jika menggunakan shell Bash atau Zsh:</span>
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+
+<span class="c1"># Jika menggunakan shell Fish:</span>
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate.fish
+</pre></div>
+</div>
+</li>
+<li><p><strong>Instalasi Pustaka Python</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Menjalankan Server Aplikasi Streamlit</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+</li>
+<li><p>Buka alamat <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code> pada peramban, klik tombol <strong>START</strong>, berikan izin mikrofon pada peramban, dan tunggu jendela 10 detik pertama terkumpul untuk melihat hasil prediksi.</p></li>
+</ol>
+</section>
+<section id="pemecahan-masalah-mikrofon-jaringan-troubleshooting">
+<h2>8.5 Pemecahan Masalah Mikrofon &amp; Jaringan (<em>Troubleshooting</em>)<a class="headerlink" href="#pemecahan-masalah-mikrofon-jaringan-troubleshooting" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Izin Mikrofon Tidak Muncul</strong>: Pastikan peramban tidak memblokir izin mikrofon secara global. Klik ikon gembok di sebelah kiri bilah alamat peramban (<em>URL address bar</em>) dan pastikan izin mikrofon dalam status <em>Allow</em>.</p></li>
+<li><p><strong>Persyaratan Konteks Aman (<em>Secure Context</em>)</strong>: Peramban modern (Chrome, Firefox, Safari) hanya mengizinkan pengaksesan mikrofon pada URL <code class="docutils literal notranslate"><span class="pre">localhost</span></code> atau situs yang diamankan dengan sertifikat <strong>HTTPS</strong>. Mengakses aplikasi melalui alamat IP mentah tanpa HTTPS dari perangkat lain akan menyebabkan fitur mikrofon dinonaktifkan oleh peramban.</p></li>
+<li><p><strong>Kendala WebRTC &amp; Firewall</strong>: Pada jaringan kampus, kantor, atau jaringan dengan firewall simetris ketat (<em>strict NAT</em>), koneksi WebRTC peer-to-peer langsung dapat terhalang. Untuk implementasi hosting publik, konfigurasi server STUN/TURN (seperti Coturn atau Twilio TURN service) diperlukan di <code class="docutils literal notranslate"><span class="pre">.streamlit/config.toml</span></code>.</p></li>
+</ul>
+</section>
+<section id="hasil-pengujian-sistem-smoke-test-automated-tests">
+<h2>8.6 Hasil Pengujian Sistem (<em>Smoke Test &amp; Automated Tests</em>)<a class="headerlink" href="#hasil-pengujian-sistem-smoke-test-automated-tests" title="Link to this heading">#</a></h2>
+<p>Berdasarkan berkas audit sistem <code class="docutils literal notranslate"><span class="pre">TEST_RESULTS.txt</span></code>, seluruh pengujian teknis telah dijalankan dengan hasil:</p>
+<ul class="simple">
+<li><p><strong>Pengujian Pipeline &amp; Model</strong>: 5 pengujian dasar lulus (termasuk verifikasi ketiadaan tumpang-tindih kelompok data latih-uji dan ketersediaan 32 fitur).</p></li>
+<li><p><strong>Pengujian Modul Visualizer</strong>: 3 pengujian lulus (sinyal hening membentuk garis datar, sinyal 440 Hz membentuk osiloskop aktif, dan sintaks JavaScript valid).</p></li>
+<li><p><strong>Total Pengujian</strong>: 8 dari 8 tes unit berhasil lulus (<code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-q</span> <span class="pre">tests</span></code>).</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Penting Mengenai Sifat Dokumentasi Statis</strong>:
+Dokumentasi Jupyter Book ini merupakan situs web statis (HTML/CSS/JS) yang berfungsi sebagai laporan teknis komprehensif proyek. Aplikasi deteksi audio interaktif Streamlit (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>) yang memerlukan server Python aktif dan koneksi mikrofon WebRTC <strong>tidak dapat dieksekusi secara langsung di dalam GitHub Pages</strong>. Aplikasi Streamlit harus dijalankan secara lokal di komputer pengguna (<code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">app.py</span></code>) atau di-deploy secara terpisah pada platform hosting berkemampuan Python dan HTTPS seperti Streamlit Community Cloud, Hugging Face Spaces, atau VPS pribadi.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Evaluation — Evaluasi Performa Model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="conclusion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conclusion — Kesimpulan dan Saran Pengembangan Lanjutan</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arsitektur-aplikasi-web-streamlit-dan-webrtc">8.1 Arsitektur Aplikasi Web Streamlit dan WebRTC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antarmuka-pengguna-dan-pengaturan-sidebar">8.2 Antarmuka Pengguna dan Pengaturan Sidebar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizer-gelombang-suara-live-waveform-equalizer">8.3 Visualizer Gelombang Suara (<em>Live Waveform &amp; Equalizer</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-aplikasi-di-cachyos-linux">8.4 Panduan Menjalankan Aplikasi di CachyOS / Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemecahan-masalah-mikrofon-jaringan-troubleshooting">8.5 Pemecahan Masalah Mikrofon &amp; Jaringan (<em>Troubleshooting</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-sistem-smoke-test-automated-tests">8.6 Hasil Pengujian Sistem (<em>Smoke Test &amp; Automated Tests</em>)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Proyek Sains Data
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
