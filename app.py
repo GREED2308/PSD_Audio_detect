@@ -93,7 +93,7 @@ if test_alert_clicked and ALERT_SOUND_BYTES is not None:
     st.success("Tes audio peringatan: 'Jangan berisik!'")
     st.audio(
         ALERT_SOUND_BYTES,
-        format="audio/wav",
+        format="audio/mpeg",
         autoplay=True,
         alt="Tes suara peringatan Jangan berisik",
     )
@@ -263,7 +263,7 @@ else:
                     alert_event_id += 1
                     alert_audio_place.audio(
                         ALERT_SOUND_BYTES,
-                        format="audio/wav",
+                        format="audio/mpeg",
                         autoplay=True,
                         alt=f"Peringatan suara Jangan berisik, peringatan ke-{alert_event_id}",
                     )

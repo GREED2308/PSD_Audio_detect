@@ -55,3 +55,6 @@ streamlit run app.py
 - Tepuk tangan atau bicara dekat mikrofon: garis dan batang equalizer harus bergerak mengikuti amplitudo.
 - Jika tidak sesuai, ubah **Ambang hening untuk visualisasi** pada sidebar.
 - Visualizer diuji dengan sinyal sintetis (hening dan sinus 440 Hz); browser + mikrofon langsung tetap perlu dites di laptop sebelum presentasi.
+## Catatan dependency Streamlit Cloud
+
+`requirements.txt` mematok `streamlit-webrtc==0.69.1` dan `av==15.1.0`. Paket `av` (PyAV) dibutuhkan oleh `app.py` dan dicantumkan eksplisit agar Streamlit Community Cloud menginstalnya. Pastikan `requirements.txt` berada di root repositori atau di direktori yang sama dengan `app.py`, lalu lakukan commit/push dan reboot aplikasi pada Streamlit Cloud.

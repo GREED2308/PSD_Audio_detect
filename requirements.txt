@@ -8,4 +8,5 @@ joblib>=1.4.0
 matplotlib>=3.9.0
 streamlit>=1.40.0,<2.0
 tqdm>=4.66.0
-streamlit-webrtc==0.69.0
+streamlit-webrtc==0.69.1
+av==15.1.0
