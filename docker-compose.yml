@@ -1,0 +1,17 @@
+services:
+  sound-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sound-lab-app
+    restart: unless-stopped
+    ports:
+      - "8001:8080"
+    environment:
+      - PORT=8080
+      - LOG_LEVEL=INFO
+      - ALLOWED_ORIGINS=*
+    volumes:
+      - ./models:/app/models:ro
+      - ./assets:/app/assets:ro
+
