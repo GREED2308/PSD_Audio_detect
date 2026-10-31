@@ -1,16 +1,12 @@
-# Python virtual environment
 .venv/
 venv/
 env/
-
-# Python cache
 __pycache__/
 *.py[cod]
-
-# Environment variables and secrets
 .env
 .env.*
-
-# IDE
 .vscode/
 .idea/
+_build/
+*.zip
+data/raw/

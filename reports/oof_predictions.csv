@@ -1,0 +1,177 @@
+filename,source_student_id,target,oof_prediction,correct
+24-003 sunyi 2.mp3,24-003,non_berisik,non_berisik,True
+24-003 sunyi 3.mp3,24-003,non_berisik,non_berisik,True
+24-006 non-berisik 1.mp3,24-006,non_berisik,non_berisik,True
+24-006 non-berisik 2.mp3,24-006,non_berisik,non_berisik,True
+24-006 non-berisik 3.mp3,24-006,non_berisik,non_berisik,True
+24-007 non-berisik 1.mp3,24-007,non_berisik,non_berisik,True
+24-007 non-berisik 2.mp3,24-007,non_berisik,non_berisik,True
+24-007 non-berisik 3.mp3,24-007,non_berisik,non_berisik,True
+24-026 non-berisik 1.mp3,24-026,non_berisik,non_berisik,True
+24-026 non-berisik 2.mp3,24-026,non_berisik,non_berisik,True
+24-026 non-berisik 3.mp3,24-026,non_berisik,non_berisik,True
+24-027_non-berisik1.mp3,24-027,non_berisik,non_berisik,True
+24-027_non-berisik2.mp3,24-027,non_berisik,non_berisik,True
+24-027_non-berisik3.mp3,24-027,non_berisik,non_berisik,True
+24-031 non-berisik 1.mp3,24-031,non_berisik,non_berisik,True
+24-031 non-berisik 2.mp3,24-031,non_berisik,non_berisik,True
+24-031 non-berisik 3.mp3,24-031,non_berisik,non_berisik,True
+24-034 non-berisik 2.mp3,24-034,non_berisik,non_berisik,True
+24-034 non-berisik 3.mp3,24-034,non_berisik,non_berisik,True
+24-053 non-berisik 2.mp3,24-053,non_berisik,non_berisik,True
+24-053 non-berisik 3.mp3,24-053,non_berisik,non_berisik,True
+24-068 non-berisik 1.mp3,24-068,non_berisik,berisik,False
+24-068 non-berisik 2.mp3,24-068,non_berisik,berisik,False
+24-068 non-berisik 3.mp3,24-068,non_berisik,berisik,False
+24-078_NonBerisik 1.mp3,24-078,non_berisik,non_berisik,True
+24-079  non-berisik 2.mp3,24-079,non_berisik,non_berisik,True
+24-079  non-berisik 3.mp3,24-079,non_berisik,non_berisik,True
+24-081 non-berisik 1.mp3,24-081,non_berisik,non_berisik,True
+24-081 non-berisik 2.mp3,24-081,non_berisik,non_berisik,True
+24-081 non-berisik 3.mp3,24-081,non_berisik,non_berisik,True
+24-087 non berisik 1.mp3,24-087,non_berisik,non_berisik,True
+24-087 non berisik 2.mp3,24-087,non_berisik,non_berisik,True
+24-087 non berisik 3.mp3,24-087,non_berisik,non_berisik,True
+24-098 non-berisik 1.mp3,24-098,non_berisik,non_berisik,True
+24-098 non-berisik 2.mp3,24-098,non_berisik,berisik,False
+24-098 non-berisik 3.mp3,24-098,non_berisik,berisik,False
+24-100 non-berisik 1.mp3,24-100,non_berisik,non_berisik,True
+24-100 non-berisik 2.mp3,24-100,non_berisik,non_berisik,True
+24-100 non-berisik 3.mp3,24-100,non_berisik,non_berisik,True
+24-101_sepi 1.mp3,24-101,non_berisik,non_berisik,True
+24-101_sepi 2.mp3,24-101,non_berisik,non_berisik,True
+24-101_sepi 3.mp3,24-101,non_berisik,non_berisik,True
+24-115_ sampel non berisik 1.mp3,24-115,non_berisik,non_berisik,True
+24-115_sampel no berisik 3.mp3,24-115,non_berisik,non_berisik,True
+24-118 non-berisik 1.mp3,24-118,non_berisik,berisik,False
+24-118 non-berisik 3.mp3,24-118,non_berisik,berisik,False
+24-118_ga_rame_part2.mp3,24-118,non_berisik,berisik,False
+24-119 non-berisik 1.mp3,24-119,non_berisik,non_berisik,True
+24-119 non-berisik 2.mp3,24-119,non_berisik,non_berisik,True
+24-119 non-berisik 3.mp3,24-119,non_berisik,non_berisik,True
+24-125_Non-Berisik-1.mp3,24-125,non_berisik,berisik,False
+24-125_Non-Berisik-2.mp3,24-125,non_berisik,berisik,False
+24-125_Non-Berisik-3.mp3,24-125,non_berisik,berisik,False
+24-131 non-berisik 1.mp3,24-131,non_berisik,non_berisik,True
+24-131 non-berisik 2.mp3,24-131,non_berisik,non_berisik,True
+24-131 non-berisik 3.mp3,24-131,non_berisik,non_berisik,True
+24-137 non-berisik 1.mp3,24-137,non_berisik,non_berisik,True
+24-137 non-berisik 2.mp3,24-137,non_berisik,non_berisik,True
+24-137 non-berisik 3.mp3,24-137,non_berisik,non_berisik,True
+24-141 non-berisik (1).mp3,24-141,non_berisik,non_berisik,True
+24-141 non-berisik (2).mp3,24-141,non_berisik,non_berisik,True
+24-141 non-berisik (3).mp3,24-141,non_berisik,non_berisik,True
+24-145 _non-berisik 1 .mp3,24-145,non_berisik,non_berisik,True
+24-145 _non-berisik 3.mp3,24-145,non_berisik,non_berisik,True
+24-145 _non-berisik2.mp3,24-145,non_berisik,berisik,False
+24-157 non  berisik 1.mp3,24-157,non_berisik,berisik,False
+24-157 non berisik 2.mp3,24-157,non_berisik,berisik,False
+24-157 non-berisik 3.mp3,24-157,non_berisik,non_berisik,True
+24-168_Non-Berisik.mp3,24-168,non_berisik,berisik,False
+24-168_Non-Berisik1.mp3,24-168,non_berisik,berisik,False
+24-168_Non-Berisik2.mp3,24-168,non_berisik,non_berisik,True
+24-169 non berisik 1.mp3,24-169,non_berisik,non_berisik,True
+24-169_non berisik 2.mp3,24-169,non_berisik,non_berisik,True
+24-169_non berisik 3.mp3,24-169,non_berisik,non_berisik,True
+24-179 sepi 1.mp3,24-179,non_berisik,non_berisik,True
+24-179 sepi 2.mp3,24-179,non_berisik,non_berisik,True
+24-179 sepi 3.mp3,24-179,non_berisik,non_berisik,True
+24-190 non-berisik 1.mp3,24-190,non_berisik,berisik,False
+24-190 non-berisik 2.mp3,24-190,non_berisik,non_berisik,True
+24-196 non berisik 1.mp3,24-196,non_berisik,non_berisik,True
+24-201 non berisik 1.mp3,24-201,non_berisik,berisik,False
+24-201 non berisik 2.mp3,24-201,non_berisik,non_berisik,True
+24-201 non berisik 3.mp3,24-201,non_berisik,berisik,False
+24-202_non berisik 1.MP3,24-202,non_berisik,non_berisik,True
+24-202_non berisik 2.MP3,24-202,non_berisik,non_berisik,True
+24-202_non berisik 3.MP3,24-202,non_berisik,non_berisik,True
+24-228 non-berisik 2.mp3,24-228,non_berisik,berisik,False
+24-228 non-berisik 3.mp3,24-228,non_berisik,berisik,False
+24-003 berisik (1).mp3,24-003,berisik,berisik,True
+24-003 berisik (2).mp3,24-003,berisik,berisik,True
+24-003 berisik (3).mp3,24-003,berisik,berisik,True
+24-006 berisik 1.mp3,24-006,berisik,berisik,True
+24-006 berisik 2.mp3,24-006,berisik,non_berisik,False
+24-006 berisik 3.mp3,24-006,berisik,non_berisik,False
+24-007 berisikk 1.mp3,24-007,berisik,non_berisik,False
+24-007 berisikkk 2.mp3,24-007,berisik,non_berisik,False
+24-007 berisikkk 3.mp3,24-007,berisik,berisik,True
+24-026 berisik 1.mp3,24-026,berisik,berisik,True
+24-026 berisik 2.mp3,24-026,berisik,berisik,True
+24-026 berisik 3.mp3,24-026,berisik,berisik,True
+24-027_berisik1.mp3,24-027,berisik,berisik,True
+24-027_berisik2.mp3,24-027,berisik,non_berisik,False
+24-027_berisik3.mp3,24-027,berisik,non_berisik,False
+24-031 berisik 1.mp3,24-031,berisik,berisik,True
+24-031 berisik 2.mp3,24-031,berisik,berisik,True
+24-031 berisik 3.mp3,24-031,berisik,berisik,True
+24-034 berisik 2.mp3,24-034,berisik,non_berisik,False
+24-034 berisik 3.mp3,24-034,berisik,non_berisik,False
+24-053 berisik 1.mp3,24-053,berisik,berisik,True
+24-068 Berisik 1.mp3,24-068,berisik,berisik,True
+24-068 Berisik 2.mp3,24-068,berisik,berisik,True
+24-068 Berisik 3.mp3,24-068,berisik,berisik,True
+24-071 berisik 1.mp3,24-071,berisik,non_berisik,False
+24-071 berisik 2.mp3,24-071,berisik,berisik,True
+24-071 berisik 3.mp3,24-071,berisik,non_berisik,False
+24-078_Berisik 1.mp3,24-078,berisik,berisik,True
+24-078_Berisik 2.mp3,24-078,berisik,berisik,True
+24-078_Berisik 3.mp3,24-078,berisik,berisik,True
+24-079 berisik 3.mp3,24-079,berisik,berisik,True
+24-081 berisik 1.mp3,24-081,berisik,berisik,True
+24-081 berisik 2.mp3,24-081,berisik,berisik,True
+24-081 berisik 3.mp3,24-081,berisik,berisik,True
+24-087 berisik 1.mp3,24-087,berisik,berisik,True
+24-087 berisik 2.mp3,24-087,berisik,non_berisik,False
+24-087 berisik 3.mp3,24-087,berisik,berisik,True
+24-100 berisik 1.mp3,24-100,berisik,berisik,True
+24-100 berisik 2.mp3,24-100,berisik,berisik,True
+24-100 berisik 3.mp3,24-100,berisik,berisik,True
+24-101_rame 1.mp3,24-101,berisik,non_berisik,False
+24-101_rame 2.mp3,24-101,berisik,non_berisik,False
+24-101_rame 3.mp3,24-101,berisik,non_berisik,False
+24-115 sampel berisik 3.mp3,24-115,berisik,berisik,True
+24-115_Sampel berisik 1.mp3,24-115,berisik,berisik,True
+24-115_sampel berisik 2.mp3,24-115,berisik,non_berisik,False
+24-118 berisik 1.mp3,24-118,berisik,berisik,True
+24-118 berisik 2.mp3,24-118,berisik,berisik,True
+24-118 berisik 3.mp3,24-118,berisik,berisik,True
+24-119 berisik 1.mp3,24-119,berisik,berisik,True
+24-119 berisik 2.mp3,24-119,berisik,berisik,True
+24-119 berisik 3.mp3,24-119,berisik,berisik,True
+24-123 berisik 1.mp3,24-123,berisik,berisik,True
+24-125_Berisik-1.mp3,24-125,berisik,berisik,True
+24-125_Berisik-2.mp3,24-125,berisik,berisik,True
+24-125_Berisik-3.mp3,24-125,berisik,berisik,True
+24-131 berisik 1.mp3,24-131,berisik,berisik,True
+24-131 berisik 2.mp3,24-131,berisik,berisik,True
+24-131 berisik 3.mp3,24-131,berisik,non_berisik,False
+24-137 berisik 1.mp3,24-137,berisik,berisik,True
+24-137 berisik 2.mp3,24-137,berisik,berisik,True
+24-137 berisik 3.mp3,24-137,berisik,berisik,True
+24-141 berisik (1).mp3,24-141,berisik,berisik,True
+24-141 berisik (2).mp3,24-141,berisik,berisik,True
+24-141 berisik (3).mp3,24-141,berisik,berisik,True
+24-145 berisik 1.mp3,24-145,berisik,berisik,True
+24-145 berisik 2.mp3,24-145,berisik,berisik,True
+24-145 berisik 3.mp3,24-145,berisik,berisik,True
+24-157 Berisik 1.mp3,24-157,berisik,berisik,True
+24-168_Berisik.mp3,24-168,berisik,non_berisik,False
+24-168_Berisik1.mp3,24-168,berisik,non_berisik,False
+24-168_Berisik2.mp3,24-168,berisik,non_berisik,False
+24-169_berisik 3.mp3,24-169,berisik,berisik,True
+24-179 berisik 1.mp3,24-179,berisik,non_berisik,False
+24-179 berisik 2.mp3,24-179,berisik,non_berisik,False
+24-179 berisik 3.mp3,24-179,berisik,non_berisik,False
+24-190 berisik 1.mp3,24-190,berisik,berisik,True
+24-190 berisik 2.mp3,24-190,berisik,berisik,True
+24-196 berisik 1.mp3,24-196,berisik,berisik,True
+24-196 berisik 2.mp3,24-196,berisik,berisik,True
+24-196 berisik 3.mp3,24-196,berisik,berisik,True
+24-201 berisik 1.mp3,24-201,berisik,berisik,True
+24-201 berisik 3.mp3,24-201,berisik,berisik,True
+24-202_berisik 1.MP3,24-202,berisik,berisik,True
+24-202_berisik 2.MP3,24-202,berisik,berisik,True
+24-202_berisik 3.MP3,24-202,berisik,berisik,True
+24-228 berisik 2.mp3,24-228,berisik,berisik,True
+24-228 berisik 3.mp3,24-228,berisik,berisik,True

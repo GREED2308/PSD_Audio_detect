@@ -1,46 +1,43 @@
-PSD Audio Classification - Test Summary
-======================================
+PSD AUDIO DETECT — HASIL UJI LOKAL STATIS
 
-Dataset processing
-- 207/207 raw entries decoded for feature extraction.
-- 0 feature extraction failures.
-- 183 unique modeling samples after duplicate removal and temporary exclusion of the cross-label hash conflict.
-- 92 berisik; 91 non_berisik.
+DATASET
+[PASS] 100 MP3 berisik + 100 MP3 non-berisik terdeteksi dari dua ZIP.
+[PASS] 200 nama file di CSV cocok dengan 200 file dalam dua ZIP.
+[PASS] CSV mempunyai 200 baris, 16 kolom fitur, tanpa nilai kosong.
+[PASS] Distribusi label awal 100 berisik dan 100 non-berisik.
+[PASS] SHA-256 audit: 18 kelompok konten identik (17 intra-kelas, 1 konflik lintas kelas).
+[PASS] Pembersihan: 22 salinan intra-kelas dihapus; kedua entri konflik lintas kelas dikeluarkan.
+[PASS] Dataset modeling: 176 baris seimbang (88 berisik, 88 non-berisik).
 
-Model training/evaluation
-- Grouped train/test split completed.
-- Train: 149 samples; test: 34 samples.
-- Source-group overlap between train and test: 0.
-- Best inner grouped-CV macro F1: 0.7323.
-- Held-out test accuracy: 0.8824.
-- Held-out test macro F1: 0.8824.
-- Majority baseline accuracy: 0.4706.
+FEATURES & MODEL
+[PASS] Feature extractor menghasilkan 16 fitur finite pada sampel MP3 dari kedua kelas.
+[PASS] Urutan fitur sesuai CSV: RMS mean, centroid mean, ZCR mean, MFCC 1–13 mean.
+[PASS] Sample rate pipeline live disamakan ke 22.050 Hz.
+[PASS] Random Forest memuat dan menerima 16 fitur.
+[PASS] Model mempunyai 200 decision trees.
+[PASS] 5-fold StratifiedGroupKFold: 35 grup sumber; tidak ada grup overlap antara train dan validasi.
+[PASS] Script prepare_dataset.py dan train_model.py dapat dijalankan ulang.
 
-Live visualizer checks
-- Silent signal creates a flat baseline and zero bars: PASS
-- Synthetic 440 Hz signal generates non-flat waveform/envelope: PASS
-- Visualizer HTML includes the correct silent/active state: PASS
-- JavaScript syntax validation with Node.js: PASS
-- Live visualization refresh is throttled to about 0.30 seconds to avoid rendering on every audio frame.
+EVALUASI GROUPED 5-FOLD OOF
+Accuracy           : 75.5682%
+Balanced accuracy  : 75.5682%
+Macro precision   : 75.5715%
+Macro recall      : 75.5682%
+Macro F1           : 75.5674%
+Confusion matrix (actual/predicted [non_berisik, berisik]):
+[[67, 21], [22, 66]]
 
-Automated test suite
-- test_evaluation_metadata_complete: PASS
-- test_expected_feature_count: PASS
-- test_model_manifest_is_deduplicated: PASS
-- test_model_predicts_both_classes_and_has_32_features: PASS
-- test_train_test_source_groups_do_not_overlap: PASS
-- Existing pipeline tests: 5 passed.
-- New visualizer tests: 3 passed.
-- Total tests: 8 passed (run with `PYTHONPATH=. pytest -q tests`).
+DOCKER / RUNTIME
+[PASS] Dockerfile tersedia di root.
+[PASS] docker-compose.yml valid secara sintaks YAML.
+[PASS] Hanya satu port host dipublikasikan: 8001:8080 (Kelompok 1).
+[PASS] requirements.txt tersedia di root.
+[PASS] app.py dan seluruh modul Python lolos py_compile.
+[NOT RUN] Docker image build dan container runtime belum bisa dijalankan di lingkungan pengerjaan ini karena Docker CLI tidak tersedia.
+[NOT RUN] Browser/WebRTC microphone end-to-end belum diuji di Docker. Jalankan pengujian dari Docker Desktop pada laptop kelompok.
 
-Additional checks
-- All project Python files passed py_compile.
-- CLI prediction src/predict.py executed on one MP3 and returned a class and scores.
-- Notebook passed nbformat validation and was executed with no cell errors.
-- PDF report rendered to 13 pages and visual pages were inspected for layout.
-
-Not run / limitation
-- The generated Canvas HTML was smoke-rendered in headless Chromium for both silence and a synthetic 440 Hz tone; expected state labels and canvas drawing were observed. The full Streamlit app with the browser microphone/WebRTC stream was not tested end-to-end in this build environment and still needs a local browser test.
-- `streamlit-webrtc`/PyAV are not installed in the package-building environment and package download was unavailable due to connection/DNS failure. The live-microphone UI source passed Python syntax compilation, but the browser-to-server microphone stream could not be tested end-to-end here. Install `requirements.txt` and test START/STOP, browser microphone permission, first prediction after the 10-second window, and repeat start/stop before the presentation.
-- Live-window predictions have not been independently benchmarked. The reported 88.24% held-out score applies only to the file-based test set, not the live microphone mode.
-- Labels have not been manually semantically checked one by one. Metrics measure agreement with the supplied folder labels.
+BATASAN
+- Label audio belum divalidasi manual untuk seluruh sampel.
+- Satu konflik label lintas kelas dikeluarkan sementara.
+- Skor OOF mengukur kesesuaian terhadap label yang diberikan, bukan ground-truth semantik yang sudah diverifikasi.
+- Akses mikrofon pada server remote membutuhkan HTTPS; jaringan tertentu mungkin membutuhkan TURN.

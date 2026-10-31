@@ -27,7 +27,7 @@ DISPLAY = {"berisik": "Berisik", "non_berisik": "Non-berisik"}
 
 st.set_page_config(page_title="Deteksi Suara Sekitar | PSD", page_icon="🔊", layout="centered")
 st.title("Deteksi Suara di Sekitar")
-st.caption("Proyek PSD · Librosa + Random Forest · Mikrofon langsung")
+st.caption("Proyek PSD · 16 fitur audio Librosa · Random Forest · Mikrofon langsung")
 st.write(
     "Aplikasi mendengarkan mikrofon setelah kamu menekan **START**, lalu menganalisis "
     "audio secara berkala untuk memperkirakan apakah lingkungan terdengar berisik atau non-berisik. "
@@ -59,9 +59,9 @@ with st.expander("Cara kerja dan privasi", expanded=True):
         """
     )
     st.warning(
-        "Model dilatih menggunakan rekaman dataset yang umumnya lebih panjang daripada jendela "
-        "mikrofon langsung. Hasil live adalah estimasi, bukan pengukuran kebisingan terkalibrasi. "
-        "Label sumber dataset juga belum seluruhnya diverifikasi manual."
+        "Model dilatih menggunakan ringkasan fitur mean dari rekaman sekitar 30 detik. Jendela "
+        "mikrofon langsung dapat lebih pendek sehingga hasilnya merupakan estimasi. Ini bukan "
+        "pengukuran tingkat kebisingan terkalibrasi. Label sumber belum seluruhnya diverifikasi manual."
     )
 
 with st.sidebar:
@@ -87,7 +87,7 @@ with st.sidebar:
         value=0.008, step=0.001, format="%.3f",
         help="Jika RMS suara terbaru di bawah ambang ini, grafik diratakan. Naikkan jika garis masih bergerak saat ruangan terasa hening.",
     )
-    st.caption("Pipeline klasifikasi: mono 16 kHz → 32 fitur → Random Forest")
+    st.caption("Pipeline klasifikasi: mono 22,05 kHz → 16 fitur mean → Random Forest")
 
 if test_alert_clicked and ALERT_SOUND_BYTES is not None:
     st.success("Tes audio peringatan: 'Jangan berisik!'")

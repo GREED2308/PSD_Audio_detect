@@ -1,0 +1,19 @@
+sha256,file_count,classes,cross_label_conflict,filenames,decision
+c963e6beecaa3b2cff4db82b8f86aafa4e50ab33ea7065e1bf73ee954a63830e,2,"berisik, non_berisik",True,24-034 non-berisik 1.mp3 | 24-034 berisik 1.mp3,exclude_all_until_label_confirmed
+26cf6fe08eb8c482e25cf4262dc5c6108d823db2c740d49cd138505bd4fbfbae,3,non_berisik,False,24-078_NonBerisik 1.mp3 | 24-078_NonBerisik 2.mp3 | 24-078_NonBerisik 3.mp3,keep_one_representative
+7ca107496ce3b6f4b137e08993a9ee1323afeeaf3f725692bab9c15e2ac03b2e,3,non_berisik,False,24-031 non-berisik 2.mp3 | 24-071 non berisik 2.mp3 | 24-115_sampel non berisik 2.mp3,keep_one_representative
+bb4f1450edab083972f6006e7352dcb4259a58bb8dd0dfaa8f8b7a89b717529a,3,berisik,False,24-157 Berisik 1.mp3 | 24-157 Berisik 2.mp3 | 24-157 Berisik 3.mp3,keep_one_representative
+d588b0e33908cdf88fe07d79567b9430af53dcf8cc3397559dbdc1bf216fa0fb,3,berisik,False,24-003 berisik (3).mp3 | 24-079 berisik 1.mp3 | 24-123 berisik 3.mp3,keep_one_representative
+dae3908267aa45604e87ca724a3bc130bcf1571503be8c175f488d6f19c5668f,3,non_berisik,False,24-196 non berisik 1.mp3 | 24-196 non berisik 2.mp3 | 24-196 non berisik 3.mp3,keep_one_representative
+0cf93360ec6819883636ac1de7bc5c76dc7fb4ea9aa4696bbe1658135245d732,2,non_berisik,False,24-003 sunyi 3.mp3 | 24-079  non-berisik 1.mp3,keep_one_representative
+1854df9da6f6c2287b97ddd860496165b7aa9264df1fe75f49944da600573ea2,2,berisik,False,24-115 sampel berisik 3.mp3 | 24-190 berisik 3.mp3,keep_one_representative
+42a343c79bf6060e5eb2b762bf1fb61ff3f8d553574118c098fb37cd8ace26f4,2,berisik,False,24-003 berisik (1).mp3 | 24-053 berisik 3.mp3,keep_one_representative
+4b947979d7fe6e493d0a804ff0a59d5fda13407f2cb66bcf31a889a665d4c66b,2,berisik,False,24-071 berisik 2.mp3 | 24-098 berisik 2.mp3,keep_one_representative
+76e2271324844a604768e1090faf180eb79160260ef16d5c9dd02e1424e7721b,2,berisik,False,24-123 berisik 1.mp3 | 24-201 berisik 2.mp3,keep_one_representative
+856d22458ad9095a4282399b7a0caf5e5a66775a92094713d66a6f77f80b66e1,2,berisik,False,24-003 berisik (2).mp3 | 24-079 berisik 2.mp3,keep_one_representative
+8f3f4f523d88d941c472576ba6325baf9ab170b2418d8f96c312a20d5d57ab49,2,berisik,False,24-071 berisik 3.mp3 | 24-098 berisik 3.mp3,keep_one_representative
+978bd8cb3135ac87b6af49a128b6503f5460201a795e4b2c62196c897ad32f36,2,non_berisik,False,24-115_ sampel non berisik 1.mp3 | 24-190 non-berisik 3.mp3,keep_one_representative
+b1c655590aa155566858ef780aebc3fef69ed1cfdf94f76b85de06fb59314325,2,non_berisik,False,24-031 non-berisik 1.mp3 | 24-071 non berisik 3.mp3,keep_one_representative
+bcf0d7e690deb079f86bcce222be972b817f43c8dd950937f18d9e7937c04572,2,non_berisik,False,24-031 non-berisik 3.mp3 | 24-071 non berisik 1.mp3,keep_one_representative
+c911175727e33330469edf43ec5a5e9342163a28535eae7bbfb3409f577056ed,2,non_berisik,False,24-003 sunyi 2.mp3 | 24-053 non-berisik 1.mp3,keep_one_representative
+d59452d18a368f90ff84f4c4403667bb192282747c608dab18b8e51bf9c662cb,2,berisik,False,24-071 berisik 1.mp3 | 24-098 berisik 1.mp3,keep_one_representative

@@ -1,108 +1,11 @@
 {
-  "model_name": "RandomForestClassifier",
-  "target_classes": [
-    "non_berisik",
-    "berisik"
-  ],
-  "feature_names": [
-    "rms_mean",
-    "rms_std",
-    "spectral_centroid_mean",
-    "spectral_centroid_std",
-    "zcr_mean",
-    "zcr_std",
-    "mfcc_01_mean",
-    "mfcc_02_mean",
-    "mfcc_03_mean",
-    "mfcc_04_mean",
-    "mfcc_05_mean",
-    "mfcc_06_mean",
-    "mfcc_07_mean",
-    "mfcc_08_mean",
-    "mfcc_09_mean",
-    "mfcc_10_mean",
-    "mfcc_11_mean",
-    "mfcc_12_mean",
-    "mfcc_13_mean",
-    "mfcc_01_std",
-    "mfcc_02_std",
-    "mfcc_03_std",
-    "mfcc_04_std",
-    "mfcc_05_std",
-    "mfcc_06_std",
-    "mfcc_07_std",
-    "mfcc_08_std",
-    "mfcc_09_std",
-    "mfcc_10_std",
-    "mfcc_11_std",
-    "mfcc_12_std",
-    "mfcc_13_std"
-  ],
-  "sample_rate": 16000,
-  "feature_count": 32,
-  "n_model_samples": 183,
-  "class_counts": {
-    "berisik": 92,
-    "non_berisik": 91
-  },
-  "train_size": 149,
-  "test_size": 34,
-  "train_class_counts": {
-    "non_berisik": 75,
-    "berisik": 74
-  },
-  "test_class_counts": {
-    "berisik": 18,
-    "non_berisik": 16
-  },
-  "train_group_count": 21,
-  "test_group_count": 6,
-  "group_overlap_count": 0,
-  "best_params": {
-    "max_depth": null,
-    "max_features": "sqrt",
-    "min_samples_leaf": 4,
-    "n_estimators": 200
-  },
-  "best_inner_cv_macro_f1": 0.7322922579296707,
-  "test_metrics": {
-    "accuracy": 0.8823529411764706,
-    "balanced_accuracy": 0.8854166666666667,
-    "precision_macro": 0.8854166666666667,
-    "recall_macro": 0.8854166666666667,
-    "f1_macro": 0.8823529411764706
-  },
-  "majority_baseline_metrics": {
-    "accuracy": 0.47058823529411764,
-    "balanced_accuracy": 0.5,
-    "f1_macro": 0.32
-  },
-  "classification_report": {
-    "Non-berisik": {
-      "precision": 0.8333333333333334,
-      "recall": 0.9375,
-      "f1-score": 0.8823529411764706,
-      "support": 16.0
-    },
-    "Berisik": {
-      "precision": 0.9375,
-      "recall": 0.8333333333333334,
-      "f1-score": 0.8823529411764706,
-      "support": 18.0
-    },
-    "accuracy": 0.8823529411764706,
-    "macro avg": {
-      "precision": 0.8854166666666667,
-      "recall": 0.8854166666666667,
-      "f1-score": 0.8823529411764706,
-      "support": 34.0
-    },
-    "weighted avg": {
-      "precision": 0.8884803921568628,
-      "recall": 0.8823529411764706,
-      "f1-score": 0.8823529411764706,
-      "support": 34.0
-    }
+  "method": "5-fold StratifiedGroupKFold out-of-fold; groups=source_student_id",
+  "metrics": {
+    "accuracy": 0.7556818181818182,
+    "balanced_accuracy": 0.7556818181818181,
+    "precision_macro": 0.7557148392096087,
+    "recall_macro": 0.7556818181818181,
+    "f1_macro": 0.7556739305891849
   },
   "confusion_matrix_labels": [
     "non_berisik",
@@ -110,19 +13,93 @@
   ],
   "confusion_matrix": [
     [
-      15,
-      1
+      67,
+      21
     ],
     [
-      3,
-      15
+      22,
+      66
     ]
   ],
-  "warning": "Label folder belum divalidasi semantik satu per satu. Test metrics mengukur agreement dengan label sumber, bukan jaminan kebenaran semantik.",
-  "versions": {
-    "python": "3.13.5",
-    "sklearn": "1.8.0",
-    "numpy": "2.3.5",
-    "pandas": "2.2.3"
-  }
+  "classification_report": {
+    "Non-berisik": {
+      "precision": 0.7528089887640449,
+      "recall": 0.7613636363636364,
+      "f1-score": 0.7570621468926554,
+      "support": 88.0
+    },
+    "Berisik": {
+      "precision": 0.7586206896551724,
+      "recall": 0.75,
+      "f1-score": 0.7542857142857143,
+      "support": 88.0
+    },
+    "accuracy": 0.7556818181818182,
+    "macro avg": {
+      "precision": 0.7557148392096087,
+      "recall": 0.7556818181818181,
+      "f1-score": 0.7556739305891849,
+      "support": 176.0
+    },
+    "weighted avg": {
+      "precision": 0.7557148392096086,
+      "recall": 0.7556818181818182,
+      "f1-score": 0.7556739305891849,
+      "support": 176.0
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 142,
+      "test_rows": 34,
+      "train_groups": 28,
+      "test_groups": 7,
+      "group_overlap": 0,
+      "accuracy": 0.7058823529411765,
+      "macro_f1": 0.7017543859649122
+    },
+    {
+      "fold": 2,
+      "train_rows": 139,
+      "test_rows": 37,
+      "train_groups": 27,
+      "test_groups": 8,
+      "group_overlap": 0,
+      "accuracy": 0.7297297297297297,
+      "macro_f1": 0.7127329192546584
+    },
+    {
+      "fold": 3,
+      "train_rows": 143,
+      "test_rows": 33,
+      "train_groups": 29,
+      "test_groups": 6,
+      "group_overlap": 0,
+      "accuracy": 0.7272727272727273,
+      "macro_f1": 0.717948717948718
+    },
+    {
+      "fold": 4,
+      "train_rows": 139,
+      "test_rows": 37,
+      "train_groups": 28,
+      "test_groups": 7,
+      "group_overlap": 0,
+      "accuracy": 0.8918918918918919,
+      "macro_f1": 0.8918128654970761
+    },
+    {
+      "fold": 5,
+      "train_rows": 141,
+      "test_rows": 35,
+      "train_groups": 28,
+      "test_groups": 7,
+      "group_overlap": 0,
+      "accuracy": 0.7142857142857143,
+      "macro_f1": 0.7140522875816994
+    }
+  ],
+  "group_overlap": 0,
+  "interpretation": "Evaluasi mengukur kesesuaian terhadap label yang diberikan. Belum semua label divalidasi secara manual."
 }

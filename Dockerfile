@@ -1,38 +1,38 @@
 # syntax=docker/dockerfile:1
 FROM python:3.13-slim
 
-# Install system audio dependencies required by librosa and soundfile
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PORT=8080 \
+    STREAMLIT_SERVER_HEADLESS=true \
+    STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     libsndfile1 \
+    curl \
     && rm -rf /var/lib/apt/lists/*
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PORT=8080
-
-# Create non-root user for security
-RUN useradd -m -u 1000 appuser
 
 WORKDIR /app
 
-# Copy requirements and install dependencies first to leverage Docker layer cache
+# Install dependencies before copying application files for better build caching.
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --upgrade pip && \
+    python -m pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application files and assign ownership to non-root user
-COPY . .
-RUN chown -R appuser:appuser /app
+# Runtime only needs the app, feature pipeline, trained model, and alert sound.
+COPY app.py .
+COPY src/ ./src/
+COPY models/ ./models/
+COPY assets/ ./assets/
 
-# Run as non-root user
+RUN useradd --create-home --uid 10001 appuser && \
+    chown -R appuser:appuser /app
 USER appuser
 
 EXPOSE 8080
 
-# Healthcheck to verify Streamlit server readiness using python urllib
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python3 -c "import urllib.request, sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8080/_stcore/health').getcode() == 200 else 1)"
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/_stcore/health', timeout=5)" || exit 1
 
-CMD ["sh", "-c", "streamlit run app.py --server.port=${PORT:-8080} --server.address=0.0.0.0 --server.headless=true"]
-
+CMD ["sh", "-c", "python -m streamlit run app.py --server.port=${PORT:-8080} --server.address=0.0.0.0 --server.headless=true"]

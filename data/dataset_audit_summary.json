@@ -1,0 +1,23 @@
+{
+  "raw_files": {
+    "berisik": 100,
+    "non_berisik": 100,
+    "total": 200
+  },
+  "csv_rows": 200,
+  "csv_numeric_features": 16,
+  "csv_missing_cells": 0,
+  "csv_duplicate_rows": 0,
+  "sha256_duplicate_groups": 18,
+  "same_label_duplicate_groups": 17,
+  "same_label_excess_rows_removed": 22,
+  "cross_label_conflict_groups": 1,
+  "cross_label_conflict_rows_excluded": 2,
+  "clean_rows": 176,
+  "clean_class_counts": {
+    "berisik": 88,
+    "non_berisik": 88
+  },
+  "source_student_groups": 35,
+  "note": "Konflik lintas label pada satu hash SHA-256 dikeluarkan sementara sampai label aslinya terkonfirmasi."
+}
